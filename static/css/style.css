@@ -51,7 +51,7 @@ footer {
     height: 124px;
     border-radius: 50%;
     margin: 0 auto;
-    background-color: var(--main-green-color);
+    background-color: var(--secondary-green-color);
 }
 
 .swiper-slide p {
