@@ -11,6 +11,7 @@ const swiper = new Swiper(".swiper", {
     },
     slidesPerView: 3,
     spaceBetween: 30,
+    initialSlide: 10,
 });
 
 const swiperEle = document.querySelector('.swiper').swiper;
