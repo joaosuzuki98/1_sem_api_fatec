@@ -60,6 +60,11 @@ footer {
     font-size: 40px;
 }
 
+.swiper-link {
+    background-color: var(--main-green-color);
+    transition: background-color 500ms;
+}
+
 #mes-timelapse {
     color: var(--secondary-black-color);
     font-family: "Lora", serif;

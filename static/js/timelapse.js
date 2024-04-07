@@ -16,7 +16,7 @@ const swiper = new Swiper(".swiper", {
 const swiperEle = document.querySelector('.swiper').swiper;
 
 // Para que o slide atual fique focado quando a página for carregada
-swiperEle.slides[swiperEle.activeIndex + 1].querySelector('.day-shape').style.backgroundColor = '#337357';
+swiperEle.slides[swiperEle.activeIndex + 1].querySelector('.day-shape').classList.add('swiper-link');
 
 // Criação do efeito de focus no slide atual e do link
 swiperEle.on('slideChange', function () {
@@ -24,9 +24,12 @@ swiperEle.on('slideChange', function () {
     const slides = this.slides;
     for (var i = 0; i < slides.length; i++) {
         var sliderShape = slides[i].querySelector('.day-shape');
-        sliderShape.style.backgroundColor = '#4F9476';
+        sliderShape.classList.remove('swiper-link')
     }
     const activeSliderShape =  slides[activeSlide + 1].querySelector('.day-shape')
-    activeSliderShape.style.transition = 'background-color 500ms';
-    activeSliderShape.style.backgroundColor = '#337357';
+    activeSliderShape.classList.add('swiper-link');
+    
+    slides[activeSlide + 1].addEventListener('click', function() {
+        window.location.href = '/show-data';
+    });
 });
