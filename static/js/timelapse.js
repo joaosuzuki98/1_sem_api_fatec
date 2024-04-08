@@ -25,7 +25,7 @@ swiperEle.on('slideChange', function () {
     const slides = this.slides;
     for (var i = 0; i < slides.length; i++) {
         var sliderShape = slides[i].querySelector('.day-shape');
-        sliderShape.classList.remove('swiper-link')
+        sliderShape.classList.remove('swiper-link');
     }
     const activeSliderShape =  slides[activeSlide + 1].querySelector('.day-shape')
     activeSliderShape.classList.add('swiper-link');
