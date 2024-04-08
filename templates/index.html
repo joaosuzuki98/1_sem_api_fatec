@@ -1,5 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <p>Yes</p>
+    <!-- Timelapse -->
+    <section>
+        <p id="mes-timelapse">
+            Março
+        </p>
+        <div class="swiper">
+            <div class="swiper-wrapper">
+            {% for i in range(21, 32) %}
+              <div class="swiper-slide">
+                <div class="day-shape">
+                  <a class="slide-link">
+                      <p>{{ i }}</p>
+                    </a>
+                </div>
+              </div>
+            {% endfor %}
+            </div>
+          </div>
+          <p id="ano-timelapse">
+            2024
+          </p>
+    </section>
 {% endblock %}

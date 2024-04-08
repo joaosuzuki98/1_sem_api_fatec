@@ -32,6 +32,67 @@ footer {
     left: 2%;
 }
 
+.swiper {
+    width: 80vw;
+    height: 146px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.swiper-slide {
+    padding-top: 20px;
+}
+
+.day-shape {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 124px;
+    height: 124px;
+    border-radius: 50%;
+    margin: 0 auto;
+    background-color: var(--secondary-green-color);
+}
+
+.swiper-slide p {
+    color: var(--white-color);
+    text-align: center;
+    font-size: 40px;
+}
+
+.swiper-no-pointer {
+    cursor: default;
+}
+
+.swiper-link {
+    background-color: var(--main-green-color);
+    transition: background-color 500ms;
+}
+
+.slide-link {
+    text-decoration: none;
+}
+
+#mes-timelapse {
+    color: var(--secondary-black-color);
+    font-family: "Lora", serif;
+    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: -15px;
+    padding-right: 2%;
+    text-align: right;
+}
+
+#ano-timelapse {
+    color: var(--secondary-black-color);
+    font-family: "Lora", serif;
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    padding-right: 2%;
+    text-align: right;
+}
+
 #home-btn {
     margin-top: 36px;
 }
