@@ -15,9 +15,13 @@ const swiper = new Swiper(".swiper", {
 });
 
 const swiperEle = document.querySelector('.swiper').swiper;
+const slideLinks = document.querySelectorAll('.slide-link');
 
 // Para que o slide atual fique focado quando a página for carregada
 swiperEle.slides[swiperEle.activeIndex + 1].querySelector('.day-shape').classList.add('swiper-link');
+
+// Para que o slide atual fique com o link para a página de exibição de dados
+slideLinks[swiperEle.activeIndex + 1].setAttribute('href', '/show-data');
 
 // Criação do efeito de focus no slide atual e do link
 swiperEle.on('slideChange', function () {
@@ -26,11 +30,13 @@ swiperEle.on('slideChange', function () {
     for (var i = 0; i < slides.length; i++) {
         var sliderShape = slides[i].querySelector('.day-shape');
         sliderShape.classList.remove('swiper-link');
+        sliderShape.classList.add('swiper-no-pointer')
+
+        slideLinks.forEach(link => link.removeAttribute('href'));
     }
     const activeSliderShape =  slides[activeSlide + 1].querySelector('.day-shape')
     activeSliderShape.classList.add('swiper-link');
-    
-    slides[activeSlide + 1].addEventListener('click', function() {
-        window.location.href = '/show-data';
-    });
+    activeSliderShape.classList.remove('swiper-no-pointer');
+
+    slideLinks[activeSlide + 1].setAttribute('href', '/show-data');
 });

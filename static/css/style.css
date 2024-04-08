@@ -60,9 +60,17 @@ footer {
     font-size: 40px;
 }
 
+.swiper-no-pointer {
+    cursor: default;
+}
+
 .swiper-link {
     background-color: var(--main-green-color);
     transition: background-color 500ms;
+}
+
+.slide-link {
+    text-decoration: none;
 }
 
 #mes-timelapse {
