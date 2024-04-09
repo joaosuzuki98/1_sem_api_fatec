@@ -16,3 +16,7 @@ def show_data():
 @app.route("/add-data")
 def add_data():
     return render_template('add_data.html')
+
+@app.route("/delete-data")
+def delete_data():
+    return render_template('delete_data.html')
