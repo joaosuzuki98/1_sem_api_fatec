@@ -30,11 +30,11 @@ swiperEle.on('slideChange', function () {
     for (var i = 0; i < slides.length; i++) {
         var sliderShape = slides[i].querySelector('.day-shape');
         sliderShape.classList.remove('swiper-link');
-        sliderShape.classList.add('swiper-no-pointer')
+        sliderShape.classList.add('swiper-no-pointer');
 
         slideLinks.forEach(link => link.removeAttribute('href'));
     }
-    const activeSliderShape =  slides[activeSlide + 1].querySelector('.day-shape')
+    const activeSliderShape =  slides[activeSlide + 1].querySelector('.day-shape');
     activeSliderShape.classList.add('swiper-link');
     activeSliderShape.classList.remove('swiper-no-pointer');
 
