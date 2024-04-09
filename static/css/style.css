@@ -73,6 +73,12 @@ footer {
     text-decoration: none;
 }
 
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
 #mes-timelapse {
     color: var(--secondary-black-color);
     font-family: "Lora", serif;
@@ -95,4 +101,12 @@ footer {
 
 #home-btn {
     margin-top: 36px;
+}
+
+#add-btn {
+    display: block;
+    background-color: var( --blue-color);
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
 }

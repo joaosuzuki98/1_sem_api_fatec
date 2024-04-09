@@ -12,3 +12,7 @@ def home():
 @app.route("/show-data")
 def show_data():
     return render_template('show_data.html')
+
+@app.route("/add-data")
+def add_data():
+    return render_template('add_data.html')
