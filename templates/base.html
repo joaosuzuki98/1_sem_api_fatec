@@ -35,6 +35,20 @@
     </a>
     {% endif %}
 
+    <p class="texto-inicial">
+        {% if request.path == "/" %}
+            Seja Bem-vindo
+        {% elif request.path == "/add-data" %}
+            Adicionar registro
+        {% elif request.path == "/delete-data" %}
+            Deletar registro
+        {% elif request.path == "/show-data" %}
+            Visualização dos dados
+        {% else %}
+            Pesquise por período
+        {% endif %}
+    </p>
+
     {% block content %}
     {% endblock %}
 

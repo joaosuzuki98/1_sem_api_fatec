@@ -20,3 +20,10 @@ def add_data():
 @app.route("/delete-data")
 def delete_data():
     return render_template('delete_data.html')
+
+@app.route("/statistics")
+def statistics():
+    return render_template('statistics.html')
+
+
+
