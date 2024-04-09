@@ -76,9 +76,12 @@ footer {
 .btn-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
+    width: 40%;
+    margin: 0 auto;
 }
+
 #mes-timelapse {
     color: var(--secondary-black-color);
     font-family: "Lora", serif;
@@ -104,9 +107,30 @@ footer {
 }
 
 #add-btn {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var( --blue-color);
     width: 54px;
     height: 54px;
     border-radius: 50%;
+}
+
+#remove-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var( --red-color);
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+}
+
+#remove-icon {
+    width: 24px;
+
+}
+
+#add-icon {
+    width: 44px;
 }
