@@ -33,6 +33,7 @@ footer {
 }
 
 .swiper {
+    /*TODO --> ao criar a media query para desktop, fazer esta width ser 80vw*/
     width: 100vw;
     height: 146px;
     padding-top: 50px;
@@ -78,6 +79,7 @@ footer {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    /*TODO --> ao fazer a media query para desktop, mudar o width para 40%*/
     width: 60%;
     margin: 0 auto;
 }
@@ -88,24 +90,23 @@ footer {
     margin-top: 35px;
 }
 
-#mes-timelapse {
+#mes-timelapse, #ano-timelapse {
     color: var(--secondary-black-color);
     font-family: "Lora", serif;
     font-size: 18px;
-    margin-top: 30px;
-    margin-bottom: -15px;
-    padding-right: 2%;
+    padding-right: 12vw;
     text-align: right;
 }
 
+#mes-timelapse {
+    margin-top: 30px;
+    margin-bottom: -15px;
+
+}
+
 #ano-timelapse {
-    color: var(--secondary-black-color);
-    font-family: "Lora", serif;
-    font-size: 18px;
     margin-top: 5px;
     margin-bottom: 25px;
-    padding-right: 2%;
-    text-align: right;
 }
 
 #home-btn {
