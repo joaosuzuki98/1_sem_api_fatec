@@ -81,9 +81,9 @@ footer {
     align-items: center;
     /*TODO --> ao fazer a media query para desktop, mudar o width para 40%*/
     width: 60%;
-    margin: 0 auto;
-    margin-top: 90px;
-    margin-bottom: 45px;
+    margin: 45px auto;
+    /* margin-top: 90px;
+    margin-bottom: 45px; */
 }
 
 .btn-container a {
@@ -166,5 +166,5 @@ footer {
     text-align: center;
     font-weight: 200;
     font-size: 18px;
-    margin-bottom: 36px;
+    margin: 35px 0;
 }
