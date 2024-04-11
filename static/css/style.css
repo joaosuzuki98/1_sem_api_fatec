@@ -17,7 +17,7 @@ body {
     flex-direction: column;
     align-items: center;
     font-family: "Poppins", sans-serif;
-    color: var(--main-white-color);
+    color: var(--white-color);
 }
 
 header {
@@ -41,4 +41,139 @@ th, td {
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+}
+
+.swiper {
+    /*TODO --> ao criar a media query para desktop, fazer esta width ser 80vw*/
+    width: 100vw;
+    height: 146px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.swiper-slide {
+    padding-top: 20px;
+}
+
+.day-shape {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 124px;
+    height: 124px;
+    border-radius: 50%;
+    margin: 0 auto;
+    background-color: var(--secondary-green-color);
+}
+
+.swiper-slide p {
+    color: var(--white-color);
+    text-align: center;
+    font-size: 40px;
+}
+
+.swiper-no-pointer {
+    cursor: default;
+}
+
+.swiper-link {
+    background-color: var(--main-green-color);
+    transition: background-color 500ms;
+}
+
+.slide-link {
+    text-decoration: none;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    /*TODO --> ao fazer a media query para desktop, mudar o width para 40%*/
+    width: 60%;
+    margin: 45px auto;
+}
+
+.btn-container a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+}
+
+.texto-inicial {
+    font-weight: 200;
+    font-size: 18px;
+    margin-top: 80px;
+}
+
+.overview {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.icon-overview {
+    width: 64px;
+}
+
+.icon-overview p {
+    text-align: center;
+}
+
+#mes-timelapse, #ano-timelapse {
+    color: var(--secondary-black-color);
+    font-family: "Lora", serif;
+    font-size: 18px;
+    padding-right: 12vw;
+    text-align: right;
+}
+
+#mes-timelapse {
+    margin-top: 30px;
+    margin-bottom: -15px;
+
+}
+
+#ano-timelapse {
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+
+#home-btn {
+    margin-top: 36px;
+}
+
+#add-btn {
+    background-color: var(--blue-color);
+}
+
+#remove-btn {
+    background-color: var(--red-color);
+}
+
+#chart-btn {
+    background-color: var(--orange-color);
+}
+
+#remove-icon {
+    width: 24px;
+
+}
+
+#add-icon {
+    width: 44px;
+}
+
+#overview-title {
+    text-align: center;
+    font-weight: 200;
+    font-size: 18px;
+    margin: 35px 0;
 }

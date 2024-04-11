@@ -6,6 +6,7 @@
     <title>Bem vindo</title>
     <link rel="stylesheet" href={{url_for('static', filename='css/normalize.css')}}>
     <link rel="stylesheet" href={{url_for('static', filename='css/style.css')}}>
+    <link rel="shortcut icon" href={{url_for('static', filename='img/favicon.ico')}}>
 
     <!-- Fonte Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,13 +17,39 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- Swiper.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
 <body>
     <header>
         <img src="{{url_for('static', filename='img/logo.png')}}">
     </header>
-    <a href="/"">Home</a>
-    <a href="/show_data">Data</a>
+  
+    {% if request.path != "/"%}
+    <a href="/" id="home-btn">
+        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#EF3E36">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+        <g id="SVGRepo_iconCarrier"> <circle cx="12" cy="12" r="10" stroke="#EF3E36" stroke-width="1.5"/> <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="#EF3E36" stroke-width="1.5" stroke-linecap="round"/> </g>
+        </svg>
+    </a>
+    {% endif %}
+
+    <p class="texto-inicial">
+        {% if request.path == "/" %}
+            Seja Bem-vindo
+        {% elif request.path == "/add-data" %}
+            Adicionar registro
+        {% elif request.path == "/delete-data" %}
+            Deletar registro
+        {% elif request.path == "/show-data" %}
+            Visualização dos dados
+        {% else %}
+            Pesquise por período
+        {% endif %}
+    </p>
+
     {% block content %}
     {% endblock %}
     <footer>
@@ -30,5 +57,9 @@
             Desenvolvido por Bug Busters.
         </p>
     </footer>
+
+    <!-- Swiper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src={{ url_for('static', filename='js/timelapse.js') }}></script>
 </body>
 </html>

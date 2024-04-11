@@ -1,22 +1,35 @@
 from flask import Flask, render_template, request, redirect, url_for
-import os  # Import for os.path.join
+import os
 from openpyxl import load_workbook
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
-ALLOWED_EXTENSIONS = {'xlsx'}  # Allowed Excel file extensions
+ALLOWED_EXTENSIONS = {'xlsx'}
 
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
 @app.route("/")
 def index():
     return render_template("index.html")
-
-@app.route("/show_data")
+  
+@app.route("/show-data")
 def show_data():
-    return render_template('data.html')
+    return render_template('show_data.html')
+
+@app.route("/add-data")
+def add_data():
+    return render_template('add_data.html')
+
+@app.route("/delete-data")
+def delete_data():
+    return render_template('delete_data.html')
+
+@app.route("/statistics")
+def statistics():
+    return render_template('statistics.html')
 
 @app.route("/upload", methods=["POST"])
 def upload():
@@ -38,6 +51,4 @@ def upload():
                 table_html += "</tr>"
 
             return render_template("data.html", table_html=table_html)
-
-if __name__ == "__main__":
-    app.run(debug=True)
+          
