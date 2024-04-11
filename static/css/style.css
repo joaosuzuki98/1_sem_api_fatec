@@ -32,6 +32,17 @@ footer {
     left: 2%;
 }
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
 .swiper {
     /*TODO --> ao criar a media query para desktop, fazer esta width ser 80vw*/
     width: 100vw;
