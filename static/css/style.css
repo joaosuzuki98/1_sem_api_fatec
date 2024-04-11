@@ -83,6 +83,16 @@ footer {
     width: 60%;
     margin: 0 auto;
     margin-top: 90px;
+    margin-bottom: 45px;
+}
+
+.btn-container a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
 }
 
 .texto-inicial {
@@ -132,23 +142,15 @@ footer {
 }
 
 #add-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: var(--blue-color);
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
 }
 
 #remove-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: var(--red-color);
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
+}
+
+#chart-btn {
+    background-color: var(--orange-color);
 }
 
 #remove-icon {
