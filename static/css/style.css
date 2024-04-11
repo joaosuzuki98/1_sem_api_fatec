@@ -82,8 +82,6 @@ footer {
     /*TODO --> ao fazer a media query para desktop, mudar o width para 40%*/
     width: 60%;
     margin: 45px auto;
-    /* margin-top: 90px;
-    margin-bottom: 45px; */
 }
 
 .btn-container a {
