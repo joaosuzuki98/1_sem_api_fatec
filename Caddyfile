@@ -1,0 +1,3 @@
+http://smartfarm.sytes.net/ {
+	reverse_proxy localhost:8000
+}
