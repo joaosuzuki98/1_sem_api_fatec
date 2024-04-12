@@ -1,5 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <p>Adicione Dados</p>
+    <h1>Selecione o arquivo Excel: </h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="xlsx">
+        <input type="submit" value="Enviar">
+    </form>
+    <h1 style="color: greenyellow;">Dados Sensores: </h1>
+    <div id="table-container"></div>
+
+    <script>
+        const tableHTML = document.getElementById('table-container');
+        tableHTML.innerHTML = "{{ table_html }}";
+        const tableElement = document.getElementById('table-container');
+        const tableText = tableElement.textContent;
+        document.getElementById('table-container').innerHTML = tableText;
+    </script>
 {% endblock %}
