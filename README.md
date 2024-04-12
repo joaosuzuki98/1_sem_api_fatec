@@ -76,10 +76,10 @@ GitHub / Flask / Html / Css / JavaScript / MySQL / Figma / Jira
 |----|------|------|--------|
 |João Suzuki|Product Owner|[GitHub](https://github.com/joaosuzuki98)|[LinkedIn](https://www.linkedin.com/in/jo%C3%A3o-suzuki-6a2b02192/)|
 |Carlos Intrieri|Scrum Master|[GitHub](https://github.com/carlosintrieri)|[LinkedIn](https://www.linkedin.com/in/carlosintrieri)|
-|Avya Alex|Dev Team|[GitHub](https://github.com/AvyaAquino)|LinkedIn|
+|Avya Alex|Dev Team|[GitHub](https://github.com/AvyaAquino)|[LinkedIn](https://www.linkedin.com/in/avya-candido-598b5228a/)|
 |Davi|Dev Team|GitHub|LinkedIn|
 |Gabriel Guimaraes|Dev Team|[GitHub](https://github.com/gabrielbguimaraes)|[LinkedIn](https://www.linkedin.com/in/gabriel-g-854017138?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)|
 |João Felipe|Dev Team|[GitHub](https://github.com/jfiliprc) | [LinkedIn](https://www.linkedin.com/in/joão-felipe-rocha/)|
 | João Góes | Dev Team | GitHub | LinkedIn |
 | Pedro Prevides Campos | Dev Team | [GitHub](https://github.com/GalaxyBurst) | [LinkedIn](https://www.linkedin.com/in/pedro-prevides-87a0b71a8/) |
-| Victor Bessa | Dev Team | GitHub | LinkedIn |
+| Victor Bessa | Dev Team | [GitHub](https://github.com/victordanielrb) | [LinkedIn](https://www.linkedin.com/in/victor-daniel-ramos-bessa-1436a3215/) |
