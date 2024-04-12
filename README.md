@@ -9,28 +9,32 @@ Conforme a demanda da 1° API, ou "Aprendizagem por Projetos Integrados", foi cr
     <a href="#tech">Tecnologias</a> |
     <a href="#mvp">MVP</a> |
     <a href="#sprint">Sprints</a> |
-    <a href="#backLog">BackLog</a> | 
+    <a href="#backlog">BackLog</a> | 
     <a href="#team">Equipe</a>
 </p>
 
+<span id="about">
+    
 ## Sobre o Projeto
 
-<span id="about">
 Este projeto se trata de um website para a leitura e armazenamento de dados da estufa inteligente do [Project Smart Farming](https://github.com/team-i9/Projeto-Smart-Farming/tree/master), que analisa os dados sobre umidade ambiente, umidade do solo, temperatura ambiente e volume da água, usando-os como base para a geração de gráficos e médias diárias, possibilitando uma melhor administração e monitoria da estufa.
 
+<span id="tech">
+    
 ## Tecnologias
 
-<span id="tech">
 GitHub / Flask / Html / Css / JavaScript / MySQL / Figma / Jira
 
+<span id="mvp">
+    
 ## MVP
 
-<span id="mvp">
 [WIP]
 
+<span id="sprint">
+    
 ## Sprints
 
-<span id="sprint">
 | Descrição | Data de início | Responsável | Previsão (h) | Data de término
 |---------|--|--|--|--|
 | Criação do Github para melhor gerenciar o projeto | 27/03/2024 | João Suzuki | 1 | 27/03/2024 |
@@ -49,9 +53,10 @@ GitHub / Flask / Html / Css / JavaScript / MySQL / Figma / Jira
 | Desenvolver o alinhamento e espaçamento correto para desktop | 11/04/2024 | Carlos Intrieri | 2 | 11/04/2024 |
 | Desenvolver README.MD do projeto do Github | 07/04/2024 | Pedro | 3 | 12/04/2024 |
 
+<span id="backlog">
+    
 ## Backlog
 
-<span id="backlog">
 | ID | Requisito | História | Progresso | 
 |----|-----------|----------|-----------| 
 | 1 | Permitir o cadastro dos dados dos sensores da estufa. | Eu, como usuário, quero cadastrar dados dos sensores da estufa, para poder monitorar o comportamento das plantas. | - [ ] | 
@@ -63,18 +68,18 @@ GitHub / Flask / Html / Css / JavaScript / MySQL / Figma / Jira
 | 7 | Permitir a filtragem dos dados a serem pesquisados. | Eu, como usuário, quero filtrar qual campo visualizar, para que possa analisar somente um determinado valor. | - [ ] | 
 | 8 | Permitir a exportação dos dados em forma de tabela. | Eu, como usuário, quero baixar os dados para meu computador, para que possa analisá-la usando um software externo. | - [ ] |
 
+<span id="team">
+    
 ## Equipe
 
-<span id="team">
-| Nome | Função | GitHub | LinkedIn
-|--|--|--|--|
-| João Suzuki | Product Owner | [GitHub](https://github.com/joaosuzuki98) | [LinkedIn](https://www.linkedin.com/in/jo%C3%A3o-suzuki-6a2b02192/) |
-| Carlos Intrieri | Scrum Master | [GitHub](https://github.com/carlosintrieri) | [LinkedIn](https://www.linkedin.com/in/carlosintrieri
-) |
-| Avya Alex | Dev Team | [GitHub](https://github.com/AvyaAquino) | LinkedIn |
-| Davi | Dev Team | GitHub | LinkedIn |
-| Gabriel Guimaraes | Dev Team | [GitHub](https://github.com/gabrielbguimaraes) | [LinkedIn](https://www.linkedin.com/in/gabriel-g-854017138?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app) |
-| João Felipe | Dev Team | [GitHub](https://github.com/jfiliprc) | [LinkedIn](https://www.linkedin.com/in/joão-felipe-rocha/) |
+|Nome|Função|GitHub|LinkedIn|
+|----|------|------|--------|
+|João Suzuki|Product Owner|[GitHub](https://github.com/joaosuzuki98)|[LinkedIn](https://www.linkedin.com/in/jo%C3%A3o-suzuki-6a2b02192/)|
+|Carlos Intrieri|Scrum Master|[GitHub](https://github.com/carlosintrieri)|[LinkedIn](https://www.linkedin.com/in/carlosintrieri)|
+|Avya Alex|Dev Team|[GitHub](https://github.com/AvyaAquino)|LinkedIn|
+|Davi|Dev Team|GitHub|LinkedIn|
+|Gabriel Guimaraes|Dev Team|[GitHub](https://github.com/gabrielbguimaraes)|[LinkedIn](https://www.linkedin.com/in/gabriel-g-854017138?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)|
+|João Felipe|Dev Team|[GitHub](https://github.com/jfiliprc) | [LinkedIn](https://www.linkedin.com/in/joão-felipe-rocha/)|
 | João Góes | Dev Team | GitHub | LinkedIn |
 | Pedro Prevides Campos | Dev Team | [GitHub](https://github.com/GalaxyBurst) | [LinkedIn](https://www.linkedin.com/in/pedro-prevides-87a0b71a8/) |
 | Victor Bessa | Dev Team | GitHub | LinkedIn |
