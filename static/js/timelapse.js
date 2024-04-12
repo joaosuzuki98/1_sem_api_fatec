@@ -1,3 +1,7 @@
+const overviewRandom=(arrayP)=>{
+   arrayP.forEach(p => p.innerText=Math.floor(Math.random()*100))
+}
+
 // Objeto para configuração do swiper
 const swiper = new Swiper(".swiper", {
     effect: "coverflow",
@@ -16,6 +20,9 @@ const swiper = new Swiper(".swiper", {
 
 const swiperEle = document.querySelector('.swiper').swiper;
 const slideLinks = document.querySelectorAll('.slide-link');
+const overviewText = document.querySelectorAll('.overview-text');
+
+overviewRandom(overviewText);
 
 // Para que o slide atual fique focado quando a página for carregada
 swiperEle.slides[swiperEle.activeIndex + 1].querySelector('.day-shape').classList.add('swiper-link');
@@ -39,4 +46,6 @@ swiperEle.on('slideChange', function () {
     activeSliderShape.classList.remove('swiper-no-pointer');
 
     slideLinks[activeSlide + 1].setAttribute('href', '/show-data');
+    overviewRandom(overviewText);
 });
+
