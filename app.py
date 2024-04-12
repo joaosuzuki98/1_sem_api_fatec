@@ -42,6 +42,10 @@ def statistics():
 def upload():
     if request.method == "POST":
         file = request.files["file"]
+
+        if not os.path.exists('./uploads'):
+            os.mkdir('./uploads')
+
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join("uploads", filename))
