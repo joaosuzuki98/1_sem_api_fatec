@@ -173,6 +173,7 @@ th, td {
 }
 
 #overview-title {
+    color: var(--secondary-black-color);
     text-align: center;
     font-weight: 200;
     font-size: 18px;
