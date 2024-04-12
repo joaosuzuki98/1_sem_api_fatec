@@ -45,6 +45,7 @@ def statistics():
     return render_template('statistics.html')
 
 
+
 @app.route("/upload", methods=["POST"])
 def upload():
     if request.method == "POST":
