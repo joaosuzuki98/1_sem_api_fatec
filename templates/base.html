@@ -7,6 +7,10 @@
     <link rel="stylesheet" href={{url_for('static', filename='css/normalize.css')}}>
     <link rel="stylesheet" href={{url_for('static', filename='css/style.css')}}>
     <link rel="shortcut icon" href={{url_for('static', filename='img/favicon.ico')}}>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.css">
+
+
+
 
     <!-- Fonte Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,6 +26,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
 <body>
+    {% if request.path == "/"%}
+    <div class="searchBar">
+        <form action="">
+            <label for="birthday" font-family: "Poppins", sans-serif>Data:</label>
+            <input type="date" id="birthday" name="birthday">
+            <input type="submit" value="Pesquisar">
+        </form> 
+    </div>
+    {% endif %}
     <header>
         <img src="{{url_for('static', filename='img/logo.png')}}">
     </header>
@@ -36,7 +49,7 @@
     </a>
     {% endif %}
 
-    <p class="texto-inicial">
+    <p class="texto-inicial.welcome">
         {% if request.path == "/" %}
             Seja Bem-vindo
         {% elif request.path == "/add-data" %}
