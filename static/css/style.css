@@ -18,6 +18,8 @@ body {
     align-items: center;
     font-family: "Poppins", sans-serif;
     color: var(--white-color);
+    padding-bottom: 15px;
+    overflow-x: hidden;
 }
 
 header {
@@ -26,11 +28,11 @@ header {
 }
 
 footer {
+    position: absolute;
+    bottom: 0;
+    left: 2%;
     color: var(--secondary-black-color);
     font-size: 10px;
-    position: fixed;
-    bottom: 10px;
-    left: 2%;
 }
 
 table {
@@ -93,7 +95,7 @@ th, td {
     align-items: center;
     /*TODO --> ao fazer a media query para desktop, mudar o width para 40%*/
     width: 60%;
-    margin: 45px auto;
+    margin: 50px auto;
 }
 
 .btn-container a {
@@ -108,7 +110,7 @@ th, td {
 .texto-inicial {
     font-weight: 200;
     font-size: 18px;
-    margin-top: 80px;
+    margin: 24px 0;
 }
 
 .overview {
@@ -125,6 +127,13 @@ th, td {
 }
 
 .icon-overview p {
+    text-align: center;
+}
+
+.overview-desc {
+    font-size: 14px;
+    color: var(--secondary-black-color);
+    font-weight: 400;
     text-align: center;
 }
 
@@ -175,14 +184,12 @@ th, td {
 #overview-title {
     color: var(--secondary-black-color);
     text-align: center;
-    font-weight: 200;
+    font-weight: 300;
     font-size: 18px;
-    margin: 35px 0;
+    margin: -5px;
+    transition: opacity 2s;
 }
-.searchBar{
-    position: relative; 
-    bottom: -200px;
-}
+
 input[type="date"] {
     padding: 8px;
     border-radius: 4px;
@@ -193,6 +200,7 @@ label {
     font-weight: bold;
     margin-right: 5px;
 }
+
 input[type="submit"] {
     padding: 8px 16px;
     background-color: #337357;
@@ -205,8 +213,10 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #EF3E36;
 }
+
 .searchBar {
-    margin-bottom: -20px;
+    margin: 34px auto 0 auto;
+    width: 80%;
 }
 
 .searchBar form {
@@ -215,10 +225,20 @@ input[type="submit"]:hover {
 }
 
 .searchBar label {
-    margin-right: 10px;
+    font-weight: 300;
+    font-size: 18px;
 }
 
 .searchBar input[type="date"] {
     flex: 1;
     margin-right: 10px;
+    color: var(--white-color);
+    background-color: var(--main-black-color);
+    border-top: var(--white-color);
+    border-right: var(--white-color);
+    border-left: var(--white-color);
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }

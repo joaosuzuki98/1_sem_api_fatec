@@ -9,9 +9,6 @@
     <link rel="shortcut icon" href={{url_for('static', filename='img/favicon.ico')}}>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.css">
 
-
-
-
     <!-- Fonte Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,15 +23,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
 <body>
-    {% if request.path == "/"%}
-    <div class="searchBar">
-        <form action="">
-            <label for="birthday" font-family: "Poppins", sans-serif>Insira a data:</label>
-            <input type="date" id="birthday" name="birthday">
-            <input type="submit" value="Pesquisar">
-        </form> 
-    </div>
-    {% endif %}
     <header>
         <img src="{{url_for('static', filename='img/logo.png')}}">
     </header>
@@ -49,7 +37,7 @@
     </a>
     {% endif %}
 
-    <p class="texto-inicial.welcome">
+    <p class="texto-inicial">
         {% if request.path == "/" %}
             Seja Bem-vindo
         {% elif request.path == "/add-data" %}
@@ -67,12 +55,18 @@
     {% endblock %}
     <footer>
         <p>
-            Desenvolvido por Bug Busters.
+            Desenvolvido por Bugbusters.
         </p>
     </footer>
+    <!-- Main.js -->
+    <script src={{ url_for('static', filename='js/overview.js') }}></script>
 
     <!-- Swiper.js -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src={{ url_for('static', filename='js/timelapse.js') }}></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src={{ url_for('static', filename='js/grafico.js') }}></script>
 </body>
 </html>

@@ -15,7 +15,7 @@ const swiper = new Swiper(".swiper", {
     },
     slidesPerView: 3,
     spaceBetween: 30,
-    initialSlide: 10,
+    initialSlide: 0,
 });
 
 const swiperEle = document.querySelector('.swiper').swiper;
@@ -49,3 +49,5 @@ swiperEle.on('slideChange', function () {
     overviewRandom(overviewText);
 });
 
+// Animação inicial do slide
+swiperEle.slideTo(10, 1000);
