@@ -32,8 +32,9 @@
           </p>
 
           <div class="overview">
-            {% for svg in svg_overview %}
-              <div class="icon-overview">
+            {% for svg, desc in overview_list %}
+            <div class="icon-overview">
+                <p class="overview-desc">{{ desc }}</p>
                 {{ svg | safe }}
                 <p class="overview-text"></p>
               </div>

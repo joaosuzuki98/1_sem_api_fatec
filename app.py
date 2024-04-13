@@ -29,9 +29,11 @@ class Data(db.Model):
 
 @app.route("/")
 def index():
+    overview_list = zip(variables.svg_overview_list, variables.overview_desc)
+
     return render_template(
         'index.html',
-        svg_overview=variables.svg_overview_list)
+        overview_list=overview_list)
 
 
 @app.route("/show-data")

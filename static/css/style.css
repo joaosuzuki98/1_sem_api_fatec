@@ -129,6 +129,13 @@ th, td {
     text-align: center;
 }
 
+.overview-desc {
+    font-size: 12px;
+    color: var(--secondary-black-color);
+    font-weight: 400;
+    text-align: center;
+}
+
 #mes-timelapse, #ano-timelapse {
     color: var(--secondary-black-color);
     font-family: "Lora", serif;

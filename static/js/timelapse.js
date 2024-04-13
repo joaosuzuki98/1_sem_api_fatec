@@ -49,4 +49,5 @@ swiperEle.on('slideChange', function () {
     overviewRandom(overviewText);
 });
 
+// Animação inicial do slide
 swiperEle.slideTo(10, 1000);
