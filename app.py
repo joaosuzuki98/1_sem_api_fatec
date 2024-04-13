@@ -66,7 +66,7 @@ def upload():
                 table_html += "<tr>"
                 for col in range(2, 7):
                     cell = sheet.cell(row=row, column=col)
-                    table_html += f"<td>{cell.value}</td>"
+                    table_html += f"<td style='color: black'>{cell.value}</td>"
                 table_html += "</tr>"
 
             return render_template("add_data.html", table_html=table_html)
