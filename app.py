@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 import os
 from openpyxl import load_workbook
 from werkzeug.utils import secure_filename
-from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 ALLOWED_EXTENSIONS = {'xlsx'}
