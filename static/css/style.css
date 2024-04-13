@@ -19,6 +19,7 @@ body {
     font-family: "Poppins", sans-serif;
     color: var(--white-color);
     padding-bottom: 15px;
+    overflow-x: hidden;
 }
 
 header {
@@ -214,7 +215,8 @@ input[type="submit"]:hover {
 }
 
 .searchBar {
-    margin-bottom: 34px;
+    margin: 34px auto 0 auto;
+    width: 80%;
 }
 
 .searchBar form {
@@ -223,10 +225,18 @@ input[type="submit"]:hover {
 }
 
 .searchBar label {
-    margin-right: 10px;
+    font-weight: 300;
+    font-size: 18px;
 }
 
 .searchBar input[type="date"] {
     flex: 1;
     margin-right: 10px;
+    color: var(--white-color);
+    background-color: var(--main-black-color);
+    border: var(--main-black-color);
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }
