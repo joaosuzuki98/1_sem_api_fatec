@@ -28,7 +28,7 @@ header {
 }
 
 footer {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 2%;
     color: var(--secondary-black-color);
@@ -234,7 +234,9 @@ input[type="submit"]:hover {
     margin-right: 10px;
     color: var(--white-color);
     background-color: var(--main-black-color);
-    border: var(--main-black-color);
+    border-top: var(--white-color);
+    border-right: var(--white-color);
+    border-left: var(--white-color);
 }
 
 ::-webkit-calendar-picker-indicator {
