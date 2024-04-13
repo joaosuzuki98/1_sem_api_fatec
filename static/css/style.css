@@ -130,7 +130,7 @@ th, td {
 }
 
 .overview-desc {
-    font-size: 12px;
+    font-size: 14px;
     color: var(--secondary-black-color);
     font-weight: 400;
     text-align: center;
@@ -185,8 +185,8 @@ th, td {
     text-align: center;
     font-weight: 300;
     font-size: 18px;
-    margin-top: 0;
-    margin-bottom: 35px;
+    margin: -5px;
+    transition: opacity 2s;
 }
 
 input[type="date"] {
