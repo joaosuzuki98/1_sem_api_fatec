@@ -3,6 +3,7 @@ import os
 from openpyxl import load_workbook
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
+import variables
 app = Flask(__name__)
 ALLOWED_EXTENSIONS = {'xlsx'}
 
@@ -11,8 +12,10 @@ def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in \
         ALLOWED_EXTENSIONS
 
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 db = SQLAlchemy(app)
+
 
 class Data(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -23,26 +26,32 @@ class Data(db.Model):
     ambient_temperature = db.Column(db.Float, nullable=False)
     water_volume = db.Column(db.Float, nullable=False)
 
+
 @app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template(
+        'index.html',
+        svg_overview=variables.svg_overview_list)
+
 
 @app.route("/show-data")
 def show_data():
     return render_template('show_data.html')
 
+
 @app.route("/add-data")
 def add_data():
     return render_template('add_data.html')
+
 
 @app.route("/delete-data")
 def delete_data():
     return render_template('delete_data.html')
 
+
 @app.route("/statistics")
 def statistics():
     return render_template('statistics.html')
-
 
 
 @app.route("/upload", methods=["POST"])
