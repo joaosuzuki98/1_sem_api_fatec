@@ -29,7 +29,7 @@ GitHub / Flask / Html / Css / JavaScript / MySQL / Figma / Jira
     
 ## MVP
 
-[WIP]
+<img src="./docs/2024-04-16 08-24-48.gif">
 
 <span id="sprint">
     
