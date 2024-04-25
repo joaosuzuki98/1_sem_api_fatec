@@ -244,3 +244,34 @@ input[type="submit"]:hover {
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
+
+@media screen and (min-width: 910px) {
+    .swiper {
+        width: 60vw;
+    }
+
+    #mes-timelapse {
+        margin-top: 76px;
+    }
+
+    #ano-timelapse {
+        margin-bottom: 54px;
+    }
+
+    .overview {
+        width: 60%;
+    }
+
+    .btn-container {
+        margin-top: 74px;
+        width: 50%;
+    }
+
+    footer {
+        width: 95%;
+    }
+
+    body {
+        padding-bottom: 5px;
+    }
+}
