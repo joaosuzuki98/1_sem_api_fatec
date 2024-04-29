@@ -53,3 +53,18 @@ var myChart = new Chart(
     document.getElementById('myChart'),
     config
 );
+
+var anotherChart = new Chart(
+    document.getElementById('anotherChart'),
+    config
+);
+
+var anotherChart = new Chart(
+    document.getElementById('evenAnotherChart'),
+    config
+);
+
+var anotherChart = new Chart(
+    document.getElementById('oneLastChart'),
+    config
+);

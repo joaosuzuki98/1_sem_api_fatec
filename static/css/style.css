@@ -275,3 +275,16 @@ input[type="submit"]:hover {
         padding-bottom: 5px;
     }
 }
+
+@media screen and (max-width: 410px) {
+    .searchBar {
+        width: 95%;
+    }
+}
+
+/* @media screen and (min-width: 736px) {
+    .grafico {
+        width: 1200px;
+        height: 1200px;
+    }
+} */

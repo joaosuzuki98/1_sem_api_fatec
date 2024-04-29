@@ -2,5 +2,10 @@
 
 {% block content %}
     <p>Visualização de gráficos</p>
-    <canvas id="myChart" width="400" height="400"></canvas>
+    <div id="chart-container">
+        <canvas id="myChart" class="grafico" width="350" height="350"></canvas>
+        <canvas id="anotherChart" class="grafico" width="350" height="350"></canvas>
+        <canvas id="evenAnotherChart" class="grafico" width="350" height="350"></canvas>
+        <canvas id="oneLastChart" class="grafico" width="350" height="350"></canvas>
+    </div>
 {% endblock %}
