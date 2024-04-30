@@ -20,8 +20,11 @@ body {
     color: var(--white-color);
     padding-bottom: 15px;
     overflow-x: hidden;
+   
 }
-
+section{
+    
+}
 header {
     margin-top: 30px;
     margin-bottom: 30px;
@@ -244,7 +247,108 @@ input[type="submit"]:hover {
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
+.modal{
+    display: none;
+    position:absolute ;
+    top: 51%;
+    right: 37%;
+    width: 25%;
+    height: 18%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center ;    
+    margin-left: auto;
+    margin-right: auto;
+    background-color:#4F9476 ;
+    color: white;
+    opacity: 100%!important;
+    z-index: 100;
+    border-radius: 12px;
+    
+    border: 8px solid #337357;
 
+}
+/* .popup-container{
+    display: fixed;
+    z-index: 99;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    min-height:100%;
+    
+} */
+#modalp{
+    justify-content: center;
+    align-self:center;
+    margin: 0px;
+    margin-left: 4%;
+    margin-right: 4%;
+
+}
+.formmodal{
+    align-items: center;
+    justify-content: center;
+    display: block;
+    height: 100%;
+    margin-top: 15px;
+    margin: 2%;
+}
+input{
+    size: 3%;
+}
+#formmodal1{
+    margin-left: 4%;
+}
+#mudcod{
+    margin-top: 6%;
+    background-color:  #337357;
+    color: white;
+    border: 10px solid #337357;
+    border-radius: 12px;
+}
+#x{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: red;
+    color: white;
+    margin-left: 2%;
+}
+#modalh1{
+    justify-content: center;
+    margin: 1%;
+}
+#modal1{
+    display: none;
+    position:absolute ;
+    top: 51%;
+    right: 37%;
+    width: 29%;
+    height: 35%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center ;    
+    margin-left: auto;
+    margin-right: auto;
+    background-color:#4F9476 ;
+    color: white;
+    opacity: 100%!important;
+    z-index: 100;
+    border-radius: 12px;
+    
+    border: 8px solid #337357;
+
+}
+#btnmodal{
+    margin: 3%;
+    margin-left: 2%;
+}
+
+input{
+    margin: 1%;
+    
+}
+label{
+    margin: 2%;
+}
 @media screen and (min-width: 910px) {
     .swiper {
         width: 60vw;
