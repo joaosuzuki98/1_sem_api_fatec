@@ -53,11 +53,14 @@
 
     {% block content %}
     {% endblock %}
-    <footer>
-        <p>
-            Desenvolvido por Bugbusters.
-        </p>
-    </footer>
+
+    {% if request.path != '/statistics' %}
+        <footer>
+            <p>
+                Desenvolvido por Bugbusters.
+            </p>
+        </footer>
+    {% endif %}
     <!-- Overview.js -->
     <script src={{ url_for('static', filename='js/overview.js') }}></script>
 
