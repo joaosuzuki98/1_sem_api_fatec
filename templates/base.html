@@ -27,7 +27,7 @@
         <img src="{{url_for('static', filename='img/logo.png')}}">
     </header>
   
-    {% if request.path != "/"%}
+    {% if request.path != "/" and request.path != "/senha"%}
     <a href="/" id="home-btn">
         <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#EF3E36">
         <g id="SVGRepo_bgCarrier" stroke-width="0"/>
@@ -68,5 +68,6 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src={{ url_for('static', filename='js/grafico.js') }}></script>
+    <script src={{ url_for('static', filename='js/codigo.js') }}></script>
 </body>
 </html>
