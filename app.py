@@ -1,14 +1,11 @@
-from flask import Flask, render_template, request ,redirect, url_for
+from flask import Flask, render_template, request
 import os
 from openpyxl import load_workbook
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
 import variables
-codigo='c0d1g0'
-
 app = Flask(__name__)
 ALLOWED_EXTENSIONS = {'xlsx'}
-
 
 
 def allowed_file(filename):
@@ -33,40 +30,23 @@ class Data(db.Model):
 @app.route("/")
 def index():
     overview_list = zip(variables.svg_overview_list, variables.overview_desc)
-    
-    return render_template('index.html', overview_list=overview_list,codigo=codigo)
 
-@app.route("/trocar",methods=["POST"])
-def trocar():
-    global codigo
-    senha = request.form["senha"]
-    senhanv = request.form['senhanv']
-    if codigo == senha:
-        codigo=senhanv
-        
-        return redirect(url_for("index"))
-    return redirect(url_for("index"))
-        
-    
-    
-    
-@app.route("/show-data",methods=["POST","GET"])
+    return render_template(
+        'index.html',
+        overview_list=overview_list)
+
+
+@app.route("/show-data")
 def show_data():
     return render_template('show_data.html')
 
 
-@app.route("/add-data",methods=["POST"])
+@app.route("/add-data")
 def add_data():
-    
-    senha = request.form['senha']  # Obtém o valor do campo 'ano' do formulário
-    if senha == codigo:
-        return render_template("add_data.html")
-    else:
-        return redirect(url_for("index"))
-    
-  
+    return render_template('add_data.html')
 
-@app.route("/delete-data",methods=["POST","GET"])
+
+@app.route("/delete-data")
 def delete_data():
     return render_template('delete_data.html')
 

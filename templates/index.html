@@ -1,33 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<div id="modal" class="modal">
-  <center><p id="modalh1">Digite o codigo de segurança! <button id="x">x</button></p></center>
-  <form class="formmodal" action = '/add-data' method="post">
-    <input type="text" name='senha' value="" placeholder="senha" aria-label="Enviar">
-    <button  type="submit">OK</button>
-  </form>
-</div>
-<div id="modal1" class="modal">
-  <center><p id="modalh1">Mudar Código <button id="x">x</button></p></center>
-  <form class="formmodal" id="formmodal1" action="/trocar" method="post">
-    <label for="senha">Codigo Anterior</label><br>
-    
-    <input type="text" name='senha' value="" placeholder="" ><br>
-    <label for="senha">Codigo Novo</label><br>
-    
-    <input type="text" name='senhanv' value="" placeholder="" ><br>
-    <button id="btnmodal"  type="submit">OK</button>
-  </form>
-  
-</div>
-
-
-  
-
-<section id="sec1">
-  
+<section>
         <!-- Searchbar -->
         <div class="searchBar">
           <form action="">
@@ -36,7 +10,7 @@
             <input type="submit" value="Pesquisar">
           </form> 
         </div>
-       
+        
         <!-- Timelapse -->
         <p id="mes-timelapse">
             Março
@@ -68,9 +42,9 @@
               </div>
             {% endfor %}
           </div>
-          
+
           <div class="btn-container">
-            <a id="add-btn">
+            <a href="/add-data" id="add-btn">
               <svg id="add-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -79,7 +53,6 @@
                 </g>
               </svg>          
             </a> 
-           
 
             <a href="/delete-data" id="remove-btn">
               <svg id="remove-icon" viewBox="-3 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
@@ -101,6 +74,4 @@
 
           </div>
     </section>
-  </div>
-  <button id="mudcod">Mudar Codigo</button>
 {% endblock %}
