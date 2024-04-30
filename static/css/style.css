@@ -95,7 +95,6 @@ th, td {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    /*TODO --> ao fazer a media query para desktop, mudar o width para 40%*/
     width: 60%;
     margin: 50px auto 0 auto;
 }
@@ -192,6 +191,13 @@ th, td {
     transition: opacity 2s;
 }
 
+#chart-container {
+    position: relative;
+    width: 90%;
+    height: 50vh;
+    margin-top: 30px;
+}
+
 input[type="date"] {
     padding: 8px;
     border-radius: 4px;
@@ -282,9 +288,18 @@ input[type="submit"]:hover {
     }
 }
 
-/* @media screen and (min-width: 736px) {
-    .grafico {
-        width: 1200px;
-        height: 1200px;
+@media screen and (min-width: 736px) {
+    #chart-container {
+        width: 80%;
     }
-} */
+}
+
+@media screen and (min-width: 1198px) {
+    #chart-container {
+        width: 40%;
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 40px;
+        margin-left: -40%;
+    }
+}
