@@ -196,6 +196,12 @@ th, td {
     width: 90%;
     height: 50vh;
     margin-top: 30px;
+    padding-bottom: 50px;
+}
+
+#espaçamento {
+    margin-top: 26%;
+    height: 40px;
 }
 
 input[type="date"] {
@@ -300,6 +306,6 @@ input[type="submit"]:hover {
         display: grid;
         grid-template-columns: auto auto;
         gap: 40px;
-        margin-left: -40%;
+        margin-left: -42%;
     }
 }
