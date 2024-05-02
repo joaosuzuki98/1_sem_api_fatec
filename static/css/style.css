@@ -204,6 +204,14 @@ th, td {
     height: 40px;
 }
 
+#aviso-del {
+    font-weight: 600;
+    margin-top: 50px;
+    font-size: 18px;
+    text-align: center;
+    width: 85%;
+}
+
 #delete-day {
     display: flex;
     width: 124px;
@@ -219,6 +227,7 @@ th, td {
     border: none;
     border-radius: 50%; 
     cursor: default;
+    margin-top: 20px;
 }
 
 input[type="date"] {
