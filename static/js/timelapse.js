@@ -51,3 +51,23 @@ swiperEle.on('slideChange', function () {
 
 // Animação inicial do slide
 swiperEle.slideTo(10, 1000);
+
+
+// sincronização da pesquisa da barra de data com o timelapse
+const searchBar = document.getElementById('searchBar');
+
+searchBar.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var selectedDay = document.getElementById('birthday').value.split("-");
+    
+    if (selectedDay[1] === '03') {
+        swiperEle.slides.forEach((slide, index) => {
+            if (selectedDay[2] === slide.textContent.trim()) {
+                swiperEle.slideTo(index - 1, 1000);
+            }
+        })
+    } else {
+        // to-do quando tivermos o banco de dados
+        console.log('Não achei o mês');
+    }
+})
