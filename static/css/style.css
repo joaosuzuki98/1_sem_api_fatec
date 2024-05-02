@@ -274,7 +274,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #EF3E36;
+    background-color: var(--blue-color);
 }
 
 #searchBar {
