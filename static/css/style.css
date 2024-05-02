@@ -173,6 +173,30 @@ th, td {
     background-color: var(--orange-color);
 }
 
+#accept-btn {
+    background-color: var(--blue-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 50px auto 0 auto;
+    border-radius: 50%;
+    width: 54px;
+    height: 54px;
+}
+
+#cancel-btn {
+    background-color: var(--red-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px auto 0 auto;
+    border-radius: 50%;
+    width: 54px;
+    height: 54px;
+}
+
 #remove-icon {
     width: 24px;
 
