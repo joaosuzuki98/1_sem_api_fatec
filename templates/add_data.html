@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Selecione o arquivo Excel: </h1>
+    <p>Selecione o arquivo Excel: <p>
     <form action="/upload" method="post" enctype="multipart/form-data">
         <input type="file" name="file" accept="xlsx">
-        <input type="submit" value="Enviar">
+        <input type="submit" value="Enviar 📂">
     </form>
-    <h1 style="color: greenyellow;">Dados Sensores: </h1>
+    <p style="color: greenyellow;">Dados Sensores: <p>
     <div id="table-container"></div>
 
     <script>
@@ -17,3 +17,4 @@
         document.getElementById('table-container').innerHTML = tableText;
     </script>
 {% endblock %}
+
