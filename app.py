@@ -80,3 +80,4 @@ def upload():
                 table_html += "</tr>"
 
             return render_template("add_data.html", table_html=table_html)
+
