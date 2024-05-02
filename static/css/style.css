@@ -290,6 +290,7 @@ input[type="submit"]:hover {
     justify-content: center;
     display: block;
     height: 100%;
+
     margin-top: 15px;
     margin: 2%;
 }
@@ -298,7 +299,9 @@ input{
 }
 #formmodal1{
     margin-left: 4%;
+    align-items: center;
 }
+
 #mudcod{
     margin-top: 6%;
     background-color:  #337357;
@@ -306,7 +309,14 @@ input{
     border: 10px solid #337357;
     border-radius: 12px;
 }
-#x{
+#mudcoda{
+    color: white;
+    text-decoration: none;
+}
+#myChart{
+    z-index: 10000;
+}
+#x,#x2{
     font-family: Arial, Helvetica, sans-serif;
     background-color: red;
     color: white;
@@ -321,7 +331,7 @@ input{
     position:absolute ;
     top: 51%;
     right: 37%;
-    width: 29%;
+    width: 21%;
     height: 35%;
     flex-wrap: wrap;
     align-items: center;

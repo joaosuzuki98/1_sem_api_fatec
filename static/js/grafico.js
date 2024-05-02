@@ -7,8 +7,10 @@ const volumeAgua = [100, 95, 90, 85, 90]; // Volume da água
 const temperaturaAmbiente = [25, 26, 27, 28, 26]; // Temperatura ambiente
 
 // Configuração do gráfico
+Chart.defaults.color='#fff'
 const config = {
     type: 'line',
+    
     data: {
         labels: labels,
         datasets: [{
@@ -39,6 +41,7 @@ const config = {
         }]
     },
     options: {
+        
         responsive: false,
         scales: {
             y: {

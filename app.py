@@ -4,6 +4,7 @@ from openpyxl import load_workbook
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
 import variables
+from datetime import datetime
 codigo='c0d1g0'
 
 app = Flask(__name__)
@@ -30,11 +31,12 @@ class Data(db.Model):
     water_volume = db.Column(db.Float, nullable=False)
 
 
-@app.route("/")
+@app.route("/",methods=['POST','GET'])
 def index():
     overview_list = zip(variables.svg_overview_list, variables.overview_desc)
     
-    return render_template('index.html', overview_list=overview_list,codigo=codigo)
+    mes=datetime.now().strftime('%h')       
+    return render_template('index.html', overview_list=overview_list,codigo=codigo,mes=mes)
 
 @app.route("/trocar",methods=["POST"])
 def trocar():
@@ -68,7 +70,12 @@ def add_data():
 
 @app.route("/delete-data",methods=["POST","GET"])
 def delete_data():
-    return render_template('delete_data.html')
+    senha = request.form['senha']  # Obtém o valor do campo 'ano' do formulário
+    if senha == codigo:
+        return render_template("delete_data.html")
+    else:
+        return redirect(url_for("index"))
+    
 
 
 @app.route("/statistics")
