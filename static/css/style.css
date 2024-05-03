@@ -140,6 +140,10 @@ th, td {
     text-align: center;
 }
 
+.next-btn {
+    display: none !important;
+}
+
 #mes-timelapse, #ano-timelapse {
     color: var(--secondary-black-color);
     font-family: "Lora", serif;
@@ -358,6 +362,11 @@ input[type="submit"]:hover {
 @media screen and (min-width: 736px) {
     #chart-container {
         width: 80%;
+    }
+
+    .next-btn {
+        display: block !important;
+        color: var(--blue-color) !important;
     }
 }
 

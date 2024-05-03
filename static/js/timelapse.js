@@ -16,6 +16,10 @@ const swiper = new Swiper(".swiper", {
     slidesPerView: 3,
     spaceBetween: 30,
     initialSlide: 0,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
 });
 
 const swiperEle = document.querySelector('.swiper').swiper;
