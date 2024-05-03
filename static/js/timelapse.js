@@ -59,16 +59,11 @@ searchBar.addEventListener('submit', function (e) {
     e.preventDefault();
     var selectedDay = document.getElementById('birthday').value.split("-");
 
-    if (selectedDay[1] === '03') {
-        swiperEle.slides.forEach((slide, index) => {
-            if (selectedDay[2] === slide.textContent.trim()) {
-                swiperEle.slideTo(index - 1, 1000);
-            }
-        })
-    } else {
-        // to-do quando tivermos o banco de dados
-        console.log('Não achei o mês');
-    }
+    swiperEle.slides.forEach((slide, index) => {
+        if (selectedDay[2] === slide.textContent.trim()) {
+            swiperEle.slideTo(index - 1, 1000);
+        }
+    })
 });
 
 function updateMonthAndYear() {
