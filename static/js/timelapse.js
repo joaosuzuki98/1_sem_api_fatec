@@ -1,5 +1,5 @@
-const overviewRandom=(arrayP)=>{
-   arrayP.forEach(p => p.innerText=Math.floor(Math.random()*100))
+const overviewRandom = (arrayP) => {
+    arrayP.forEach(p => p.innerText = Math.floor(Math.random() * 100));
 }
 
 // Objeto para configuração do swiper
@@ -45,7 +45,7 @@ swiperEle.on('slideChange', function () {
 
         slideLinks.forEach(link => link.removeAttribute('href'));
     }
-    const activeSliderShape =  slides[activeSlide + 1].querySelector('.day-shape');
+    const activeSliderShape = slides[activeSlide + 1].querySelector('.day-shape');
     activeSliderShape.classList.add('swiper-link');
     activeSliderShape.classList.remove('swiper-no-pointer');
 
@@ -56,22 +56,35 @@ swiperEle.on('slideChange', function () {
 // Animação inicial do slide
 swiperEle.slideTo(10, 1000);
 
-
 // sincronização da pesquisa da barra de data com o timelapse
 const searchBar = document.getElementById('searchBar');
 
-searchBar.addEventListener('submit', function(e) {
+searchBar.addEventListener('submit', function (e) {
     e.preventDefault();
     var selectedDay = document.getElementById('birthday').value.split("-");
-    
-    if (selectedDay[1] === '03') {
-        swiperEle.slides.forEach((slide, index) => {
-            if (selectedDay[2] === slide.textContent.trim()) {
-                swiperEle.slideTo(index - 1, 1000);
-            }
-        })
-    } else {
-        // to-do quando tivermos o banco de dados
-        console.log('Não achei o mês');
-    }
-})
+
+    swiperEle.slides.forEach((slide, index) => {
+        if (selectedDay[2] === slide.textContent.trim()) {
+            swiperEle.slideTo(index - 1, 1000);
+        }
+    })
+});
+
+function updateMonthAndYear() {
+    var selectedDate = document.getElementById('birthday').value;
+    var dateObj = new Date(selectedDate);
+    var monthIndex = dateObj.getMonth();
+    var monthNames = [
+        "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+        "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+    ];
+    var monthName = monthNames[monthIndex];
+    document.getElementById('mes-timelapse').textContent = monthName;
+    document.getElementById('ano-timelapse').textContent = dateObj.getFullYear();
+}
+
+// Adiciona um evento para chamar a função updateMonthAndYear() quando a data é selecionada
+document.getElementById('birthday').addEventListener('change', updateMonthAndYear);
+
+// Chama a função updateMonthAndYear() para definir o mês e o ano inicialmente
+updateMonthAndYear();

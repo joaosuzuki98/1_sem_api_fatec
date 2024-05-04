@@ -3,12 +3,19 @@
 {% block content %}
 <section>
         <!-- Searchbar -->
-        <div id="searchBar">
-          <form action="">
-            <label for="birthday" font-family: "Poppins", sans-serif>Data:</label>
-            <input type="date" id="birthday" name="birthday">
-            <input type="submit" value="Pesquisar">
-          </form> 
+                <!-- Searchbar -->
+          <div id="searchBar">
+            <form action="/atualizar_carrossel" method="post" id="searchForm">
+              <label for="month">Mês:</label>
+              <select id="month" name="codigo_mes">
+                  <option value="01">Janeiro</option>
+                  <option value="02">Fevereiro</option>
+                  <option value="03">Março</option>
+                  <!-- Adicione os restantes dos meses aqui -->
+              </select>
+              <input type="date" id="birthday" name="birthday"> <!-- Campo de entrada de data adicionado -->
+              <input type="submit" value="Pesquisar">
+          </form>
         </div>
         
         <!-- Timelapse -->
@@ -17,7 +24,7 @@
         </p>
         <div class="swiper">
             <div class="swiper-wrapper">
-            {% for i in range(21, 32) %}
+            {% for i in range(1, 32) %}
               <div class="swiper-slide">
                 <div class="day-shape">
                   <a class="slide-link">

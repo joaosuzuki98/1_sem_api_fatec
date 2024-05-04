@@ -93,3 +93,4 @@ def upload():
                     table_html += "</tr>"
             db.session.commit()
             return render_template("add_data.html", table_html=table_html)
+
