@@ -2,8 +2,9 @@ from flask import Flask, render_template, request
 import os
 from openpyxl import load_workbook
 from werkzeug.utils import secure_filename
-from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
+import variables
+import datetime
 app = Flask(__name__)
 ALLOWED_EXTENSIONS = {'xlsx'}
 
@@ -12,8 +13,10 @@ def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in \
         ALLOWED_EXTENSIONS
 
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 db = SQLAlchemy(app)
+
 
 class Data(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,33 +27,42 @@ class Data(db.Model):
     ambient_temperature = db.Column(db.Float, nullable=False)
     water_volume = db.Column(db.Float, nullable=False)
 
+with app.app_context():
+    db.create_all()
+
 @app.route("/")
 def index():
-    return render_template('index.html')
+    overview_list = zip(variables.svg_overview_list, variables.overview_desc)
+
+    return render_template(
+        'index.html',
+        overview_list=overview_list)
+
 
 @app.route("/show-data")
 def show_data():
     return render_template('show_data.html')
 
+
 @app.route("/add-data")
 def add_data():
     return render_template('add_data.html')
 
+
 @app.route("/delete-data")
 def delete_data():
     return render_template('delete_data.html')
+
 
 @app.route("/statistics")
 def statistics():
     return render_template('statistics.html')
 
 
-
 @app.route("/upload", methods=["POST"])
 def upload():
     if request.method == "POST":
         file = request.files["file"]
-
         if not os.path.exists('./uploads'):
             os.mkdir('./uploads')
 
@@ -61,12 +73,21 @@ def upload():
             wb = load_workbook(os.path.join("uploads", filename))
             sheet = wb.active
             table_html = "<table>"
-
-            for row in range(25934, 25941):
-                table_html += "<tr>"
-                for col in range(2, 7):
-                    cell = sheet.cell(row=row, column=col)
-                    table_html += f"<td style='color: black'>{cell.value}</td>"
-                table_html += "</tr>"
-
+            for row in range(1, sheet.max_row + 1):
+                try:
+                    info = Data()
+                    info.date = datetime.datetime.strptime(str(sheet.cell(row=row, column=2).value).split(" ")[0], "%Y-%m-%d")
+                    info.time = sheet.cell(row=row, column=3).value
+                    info.soil_humidity = sheet.cell(row=row, column=4).value
+                    info.ambient_humidity = sheet.cell(row=row, column=5).value
+                    info.ambient_temperature = sheet.cell(row=row, column=6).value
+                    info.water_volume = sheet.cell(row=row, column=7).value
+                    db.session.add(info)
+                except:
+                    table_html += "<tr>"
+                    for col in range(2, 7):
+                        cell = sheet.cell(row=row, column=col)
+                        table_html += f"<td style='color: black'>{cell.value}</td>"
+                    table_html += "</tr>"
+            db.session.commit()
             return render_template("add_data.html", table_html=table_html)
