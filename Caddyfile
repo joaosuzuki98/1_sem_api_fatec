@@ -1,0 +1,3 @@
+http://smartfarm.gotdns.ch/ {
+	reverse_proxy localhost:8000
+}

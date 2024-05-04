@@ -1,65 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <p>Visualização de gráficos</p>
-    <canvas id="myChart" width="400" height="400"></canvas>
+    <div id="chart-container">
+        <canvas id="myChart" class="grafico"></canvas>
+        <canvas id="anotherChart" class="grafico"></canvas>
+        <canvas id="evenAnotherChart" class="grafico"></canvas>
+        <canvas id="oneLastChart" class="grafico"></canvas>
+    </div>
+    <div id='espaçamento'></div>
 
-    <script>
-        // Dados
-        const labels = ['27/01', '28/01', '29/01', '30/01', '31/01']; // Labels de meses
-        const umidade = [65, 68, 70, 72, 68]; // Umidade
-        const umidadeSolo = [45, 42, 40, 38, 42]; // Umidade do solo
-        const temperaturaAgua = [20, 22, 23, 24, 22]; // Temperatura da água
-        const volumeAgua = [100, 95, 90, 85, 90]; // Volume da água
-        const temperaturaAmbiente = [25, 26, 27, 28, 26]; // Temperatura ambiente
+    <a id="download-btn" href>
+        <svg width="24" heigh="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M17 9.00195C19.175 9.01406 20.3529 9.11051 21.1213 9.8789C22 10.7576 22 12.1718 22 15.0002V16.0002C22 18.8286 22 20.2429 21.1213 21.1215C20.2426 22.0002 18.8284 22.0002 16 22.0002H8C5.17157 22.0002 3.75736 22.0002 2.87868 21.1215C2 20.2429 2 18.8286 2 16.0002L2 15.0002C2 12.1718 2 10.7576 2.87868 9.87889C3.64706 9.11051 4.82497 9.01406 7 9.00195" stroke="#efefef" stroke-width="1.5" stroke-linecap="round"></path> <path d="M12 2L12 15M12 15L9 11.5M12 15L15 11.5" stroke="#efefef" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+    </a>
 
-        // Configuração do gráfico
-        const config = {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Umidade (%)',
-                    data: umidade,
-                    borderColor: 'blue',
-                    fill: false
-                }, {
-                    label: 'Umidade do Solo (%)',
-                    data: umidadeSolo,
-                    borderColor: 'green',
-                    fill: false
-                }, {
-                    label: 'Temperatura da Água (°C)',
-                    data: temperaturaAgua,
-                    borderColor: 'red',
-                    fill: false
-                }, {
-                    label: 'Volume da Água (Litros)',
-                    data: volumeAgua,
-                    borderColor: 'orange',
-                    fill: false
-                }, {
-                    label: 'Temperatura Ambiente (°C)',
-                    data: temperaturaAmbiente,
-                    borderColor: 'purple',
-                    fill: false
-                }]
-            },
-            options: {
-                responsive: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        };
-
-        // Renderizar o gráfico
-        var myChart = new Chart(
-            document.getElementById('myChart'),
-            config
-        );
-    </script>
 {% endblock %}
