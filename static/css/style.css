@@ -206,6 +206,8 @@ th, td {
 #download-btn {
     background-color: var(--blue-color);
     display: flex;
+    position: absolute;
+    bottom: -160%;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
@@ -377,6 +379,22 @@ input[type="submit"]:hover {
         grid-template-columns: auto auto;
         gap: 40px;
         margin-left: -42%;
+    }
+
+    #download-btn {
+        position: relative;
+    }
+}
+
+@media screen and (min-width: 1396px) {
+    #download-btn {
+        position: relative;
+    }
+}
+
+@media screen and (max-height: 766px) {
+    #download-btn {
+        bottom: -170%;
     }
 }
 
