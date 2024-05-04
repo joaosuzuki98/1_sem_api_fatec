@@ -27,11 +27,11 @@ class Data(db.Model):
     ambient_temperature = db.Column(db.Float, nullable=False)
     water_volume = db.Column(db.Float, nullable=False)
 
-    
+
 with app.app_context():
     db.create_all()
 
-    
+
 @app.route("/")
 def index():
     overview_list = zip(variables.svg_overview_list, variables.overview_desc)

@@ -5,6 +5,8 @@ const umidadeSolo = [45, 42, 40, 38, 42]; // Umidade do solo
 const volumeAgua = [100, 95, 90, 85, 90]; // Volume da água
 const temperaturaAmbiente = [25, 26, 27, 28, 26]; // Temperatura ambiente
 
+Chart.defaults.color = '#efefef';
+
 // Renderizar o gráfico
 var myChart = new Chart(
     document.getElementById('myChart'), {
@@ -23,7 +25,15 @@ var myChart = new Chart(
             maintainAspectRatio: false,
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grid: {
+                        color: '#292929'
+                    }
+                },
+                x: {
+                    grid: {
+                        color: '#292929'
+                    }
                 }
             }
         }
@@ -46,7 +56,15 @@ var anotherChart = new Chart(
             maintainAspectRatio: false,
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grid: {
+                        color: '#292929'
+                    }
+                },
+                x: {
+                    grid: {
+                        color: '#292929'
+                    }
                 }
             }
         }
@@ -69,7 +87,15 @@ var evenAnotherChart = new Chart(
             maintainAspectRatio: false,
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grid: {
+                        color: '#292929'
+                    }
+                },
+                x: {
+                    grid: {
+                        color: '#292929'
+                    }
                 }
             }
         }
@@ -84,7 +110,7 @@ var oneLastChart = new Chart(
                 label: 'Temperatura Ambiente (°C)',
                 data: temperaturaAmbiente,
                 borderColor: 'purple',
-                fill: false
+                fill: false,
             }]
         },
         options: {
@@ -92,7 +118,15 @@ var oneLastChart = new Chart(
             maintainAspectRatio: false,
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grid: {
+                        color: '#292929'
+                    }
+                },
+                x: {
+                    grid: {
+                        color: '#292929'
+                    }
                 }
             }
         }
@@ -101,10 +135,14 @@ var oneLastChart = new Chart(
 
 const downloadBtn = document.getElementById('download-btn');
 
-downloadBtn.addEventListener('click', () => {
-    const imageLink = document.createElement('a');
-    const canvas = document.getElementById('myChart');
-    imageLink.download = 'canvas.png';
-    imageLink.href = canvas.toDataURL('image/png', 1);
-    imageLink.click();
+downloadBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const graficos = document.querySelectorAll('.grafico');
+
+    graficos.forEach((grafico, index) => {
+        const imageLink = document.createElement('a');
+        imageLink.download = `canvas${index}.png`;
+        imageLink.href = grafico.toDataURL('image/png', 1);
+        imageLink.click();
+    })
 });
