@@ -4,7 +4,7 @@ from openpyxl import load_workbook
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
 import variables
-from datetime import datetime
+import datetime
 app = Flask(__name__)
 codigo = 'c0d1g0'
 ALLOWED_EXTENSIONS = {'xlsx'}
@@ -37,7 +37,7 @@ with app.app_context():
 def index():
     overview_list = zip(variables.svg_overview_list, variables.overview_desc)
 
-    mes = datetime.now().strftime('%h')
+    mes = datetime.datetime.now().strftime('%h')
     return render_template('index.html', overview_list=overview_list, mes=mes)
 
 
