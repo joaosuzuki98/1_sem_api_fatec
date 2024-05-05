@@ -2,6 +2,17 @@
 
 {% block content %}
 
+<div id="message-card" class="message-card hidden">
+  <div id="message-content">
+    {% if error %}
+    <p style="color: red;">{{ error }}</p> <!-- Exibe mensagem de erro se houver -->
+    {% endif %} 
+    {% if success %}
+    <p style="color: green;">{{ success }}</p> <!-- Exibe mensagem de sucesso se houver -->
+    {% endif %}
+  </div>
+</div>
+
 <div id="modal" class="modal">
   <center><p id="modalh1">Digite o codigo de segurança! <button id="x">x</button></p></center>
   <form class="formmodal" action = '/add-data' method="post">
@@ -18,17 +29,17 @@
 </div>
 <div id="modal1" class="modal">
   <center><p id="modalh1">Mudar Código <button id="x2">x</button></p></center>
-  <form class="formmodal" id="formmodal1" action="/trocar" method="post">
-    <label for="senha">Codigo Anterior</label><br>
-    
-    <input type="text" name='senha' value="" placeholder="" ><br>
-    <label for="senha">Codigo Novo</label><br>
-    
-    <input type="text" name='senhanv' value="" placeholder="" ><br>
+  <form class="formmodal" id="formmodal1" action="/trocar" method="POST">
+    <label for="senha">Código Anterior</label><br>
+    <input type="text" name='senha' value="" placeholder=""><br>
+    <label for="senhanv">Novo Código</label><br>
+    <input type="text" name='senhanv' value="" placeholder=""><br>
     <button id="btnmodal"  type="submit">OK</button>
-  </form>
-  
+</form>
+
 </div>
+
+
 
 
   
@@ -110,4 +121,31 @@
     </section>
   </div>
   <button role="link"  id="mudcod"><a id="mudcoda" href="#">Mudar Codigo</a></button>
+
+
+  <script>
+    // Function to show message in the card
+    function showMessage(message, type) {
+        var messageCard = document.getElementById('message-card');
+        var messageText = document.getElementById('message-text');
+
+        // Set the message and style based on type
+        messageText.innerText = message;
+        if (type === 'success') {
+            messageCard.classList.remove('error');
+            messageCard.classList.add('success');
+        } else {
+            messageCard.classList.remove('success');
+            messageCard.classList.add('error');
+        }
+
+        // Show the message card
+        messageCard.classList.remove('hidden');
+
+        // Hide the message card after 5 seconds
+        setTimeout(function() {
+            messageCard.classList.add('hidden');
+        }, 5000);
+    }
+</script>
 {% endblock %}

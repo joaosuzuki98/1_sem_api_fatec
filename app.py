@@ -1,15 +1,14 @@
-from flask import Flask, render_template, request ,redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 import os
 from openpyxl import load_workbook
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
 import variables
 from datetime import datetime
-codigo='c0d1g0'
 
 app = Flask(__name__)
+codigo = 'c0d1g0'
 ALLOWED_EXTENSIONS = {'xlsx'}
-
 
 
 def allowed_file(filename):
@@ -34,24 +33,33 @@ class Data(db.Model):
 @app.route("/",methods=['POST','GET'])
 def index():
     overview_list = zip(variables.svg_overview_list, variables.overview_desc)
-    
+
     mes=datetime.now().strftime('%h')       
     return render_template('index.html', overview_list=overview_list,codigo=codigo,mes=mes)
 
-@app.route("/trocar",methods=["POST"])
+@app.route("/trocar", methods=["POST"])
 def trocar():
     global codigo
     senha = request.form["senha"]
     senhanv = request.form['senhanv']
+
+    # Validação dos campos
+    if not senha or not senhanv:
+        return render_template("index.html", error="Por favor, preencha todos os campos.")
+
     if codigo == senha:
-        codigo=senhanv
-        
-        return redirect(url_for("index"))
-    return redirect(url_for("index"))
-        
-    
-    
-    
+        if len(senhanv) < 6:  
+            return render_template("index.html", error="O novo código deve ter pelo menos 6 caracteres.")
+
+        # Atualiza o código para o novo código fornecido
+        codigo = senhanv
+        return render_template("index.html", success="Código atualizado com sucesso.")
+
+    return render_template("index.html", error="Senha incorreta.")
+
+
+
+
 @app.route("/show-data",methods=["POST","GET"])
 def show_data():
     return render_template('show_data.html')
