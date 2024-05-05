@@ -61,10 +61,12 @@ const searchBar = document.getElementById('searchBar');
 
 searchBar.addEventListener('submit', function (e) {
     e.preventDefault();
-    var selectedDay = document.getElementById('birthday').value.split("-");
+    var selectedDate = document.getElementById('birthday').value.split("-");
+    var selectedDay = parseInt(Number(selectedDate[2]), 10);
+    selectedDay = String(selectedDay);
 
     swiperEle.slides.forEach((slide, index) => {
-        if (selectedDay[2] === slide.textContent.trim()) {
+        if (selectedDay === slide.textContent.trim()) {
             swiperEle.slideTo(index - 1, 1000);
         }
     })
@@ -87,4 +89,6 @@ function updateMonthAndYear() {
 document.getElementById('birthday').addEventListener('change', updateMonthAndYear);
 
 // Chama a função updateMonthAndYear() para definir o mês e o ano inicialmente
-updateMonthAndYear();
+
+// TODO -> Comentado porque está dando um erro
+// updateMonthAndYear();
