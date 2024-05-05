@@ -1,11 +1,12 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 import os
 from openpyxl import load_workbook
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
 import variables
-import datetime
+from datetime import datetime
 app = Flask(__name__)
+codigo = 'c0d1g0'
 ALLOWED_EXTENSIONS = {'xlsx'}
 
 
@@ -36,9 +37,29 @@ with app.app_context():
 def index():
     overview_list = zip(variables.svg_overview_list, variables.overview_desc)
 
-    return render_template(
-        'index.html',
-        overview_list=overview_list)
+    mes = datetime.now().strftime('%h')
+    return render_template('index.html', overview_list=overview_list, mes=mes)
+
+
+@app.route("/trocar", methods=["POST"])
+def trocar():
+    global codigo
+    senha = request.form["senha"]
+    senhanv = request.form['senhanv']
+
+    # Validação dos campos
+    if not senha or not senhanv:
+        return render_template("index.html", error="Por favor, preencha todos os campos.")
+
+    if codigo == senha:
+        if len(senhanv) < 6:  
+            return render_template("index.html", error="O novo código deve ter pelo menos 6 caracteres.")
+
+        # Atualiza o código para o novo código fornecido
+        codigo = senhanv
+        return render_template("index.html", success="Código atualizado com sucesso.")
+
+    return render_template("index.html", error="Senha incorreta.")
 
 
 @app.route("/show-data")
@@ -54,6 +75,14 @@ def add_data():
 @app.route("/delete-data")
 def delete_data():
     return render_template('delete_data.html')
+
+
+@app.route("/del-dia", methods=["POST"])
+def del_dia():
+    senha = request.form['senha']
+    if senha == codigo:
+        return render_template("delete_data.html", success="Dia deletado com sucesso.")
+    return render_template("delete_data.html", error="Código de segurança errado.")
 
 
 @app.route("/statistics")

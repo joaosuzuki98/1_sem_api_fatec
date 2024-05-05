@@ -90,5 +90,6 @@ document.getElementById('birthday').addEventListener('change', updateMonthAndYea
 
 // Chama a função updateMonthAndYear() para definir o mês e o ano inicialmente
 
-// TODO -> Comentado porque está dando um erro
+// TODO -> Comentado porque está dando um erro, como o formulário não manda nenhum
+// valor ao carregar a página, ele pega nenhum valor :/
 // updateMonthAndYear();
