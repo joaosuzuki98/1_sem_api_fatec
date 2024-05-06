@@ -29,44 +29,51 @@ GitHub / Flask / Html / Css / JavaScript / MySQL / Figma / Jira
     
 ## MVP
 
-<img src="./docs/2024-04-16 08-24-48.gif">
+<img src="./docs/Sprint-2/mvp-sprint-2.gif">
 
 <span id="sprint">
     
 ## Sprints
 
-| Descrição | Data de início | Responsável | Previsão (h) | Data de término
-|---------|--|--|--|--|
-| Criação do Github para melhor gerenciar o projeto | 27/3/2024 | João Suzuki | 1 | 27/3/2024
-| Criação do Jira para desenvolver o Backlog da Sprint | 25/3/2024 | Carlos Intrieri | 1.5 | 25/3/2024
-| Criação do Backlog | 23/3/2024 | João Suzuki | 3.5 | 28/3/2024
-| Ilustrar o gráfico estático para demonstrar os dados demandados pelo cliente | 5/4/2024 | Victor Bessa | 8 | 12/4/2024
-| Desenvolver um botão para entrar na página de Delete. | 5/4/2024 | João Góes | 4 | 12/4/2024
-| Desenvolver barra de pesquisa por dia no timelapse | 5/4/2024 | Gabriel Guimarães | 8 | 12/4/2024
-| Desenvolver o botão para entrar na página de cadastro de dados | 5/4/2024 | Carlos Intrieri | 4 | 11/4/2024
-| Desenvolver o botão para voltar para o home | 5/4/2024 | Pedro Prevides | 6 | 8/4/2024
-| Desenvolver o formulário para coleta dos dados dos sensores | 5/4/2024 | João Felipe | 8 | 11/4/2024
-| Desenvolver Timelapse dos dias cadastrados no sistema com mês e ano responsivo | 5/4/2024 | João Suzuki | 8 | 11/4/2024
-| Desenvolver o botão para entrar na página de visualização de gráficos | 5/4/2024 | Davi Marinho | 6 | 10/4/2024
-| Desenvolver o texto de informação de cada página | 5/4/2024 | Carlos Intrieri | 6 | 10/4/2024
-| Desenvolver o formulário para registrar a data e a hora em que os dados dos sensores foram coletados | 5/4/2024 | Avya Alex | 8 | 11/4/2024
-| Desenvolver README.MD do projeto do Github | 7/4/2024 | Pedro Prevides | 3 | 12/4/2024
-| Criar o Overview para ter o resumo diário dos dados | 7/4/2024 | João Góes | 4 | 12/4/2024
+[Sprint 1 →](./docs/Sprint-1/sprint-1.md)
+
+| Tipo | Descrição | Data de início | Responsável | Data de término
+|------|-----------|--|--|--|
+| Front-End | Otimizar o sistema de pesquisa por data | 22/4/2024 | Gabriel Guimarães | 2/5/2024
+| Front-End | Ajustar a responsividade para desktop | 22/4/2024 | João Suzuki | 29/4/2024
+| Front-End | Criar o símbolo do dia | 22/4/2024 | João Góes | 2/5/2024
+| Front-End | Sincronizar a pesquisa de data com o timelapse | 22/4/2024 | Carlos Intrieri | 2/5/2024
+| Front-End | Criar os botões | 22/4/2024 | Pedro Prevides | 2/5/2024
+| Front-End | Criar o texto de warning, ao deletar | 22/4/2024 | Carlos Intrieri | 2/5/2024
+| Front-End | Ajustar visual da página de adicionar registro | 22/4/2024 | Davi Marinho | 2/5/2024
+| Back-End | Armazenar códigos de acesso | 22/4/2024 | João Felipe | 3/5/2024
+| Back-End | Integrar planilha de dados com MySQL | 22/4/2024 | Avya Alex | 3/5/2024
+| Back-End | Criar funcionalidade de digitar a senha para adicionar/remover dados | 22/4/2024 | Victor Bessa | 2/5/2024
+| Back-End | Atualizar o README | 22/4/2024 | Davi Marinho | 10/4/2024
 
 <span id="backlog">
     
 ## Backlog
 
-| ID | Requisito | História | Progresso | 
-|----|-----------|----------|-----------| 
-| 1 | Permitir o cadastro dos dados dos sensores da estufa. | Eu, como usuário, quero cadastrar dados dos sensores da estufa, para poder monitorar o comportamento das plantas. | - [ ] | 
-| 2 | Permitir a alteração dos dados dos sensores. | Eu, como usuário, quero alterar os dados cadastrados dos sensores, para que eu possa corrigir algum dado digitado errado. | - [ ] | 
-| 3 | Permitir o deletamento dos dados coletados. | Eu, como usuário, quero deletar os dados cadastrados dos sensores, para que eu possa registrar os dados de novo ao invés de editar um por um. | - [ ] | 
-| 4 | Exibir, em formato de gráfico, os dados coletados. | Eu, como usuário, quero visualizar os dados em formato de gráficos, para que eu possa ver como os dados variam através do tempo. | - [ ] | 
-| 5 | Exibir, em formato de tabela, os dados coletados. | Eu, como usuário, quero visualizar os dados em formato de tabela, para que eu possa ver os dados de forma individual. | - [ ] | 
-| 6 | Permitir a pesquisa de um dado em um determinado período de tempo. | Eu, como usuário, quero poder pesquisar os dados em um determinado range de dias, para eu que possa analisar como a estufa se comportou naquele período. | - [ ] | 
-| 7 | Permitir a filtragem dos dados a serem pesquisados. | Eu, como usuário, quero filtrar qual campo visualizar, para que possa analisar somente um determinado valor. | - [ ] | 
-| 8 | Permitir a exportação dos dados em forma de tabela. | Eu, como usuário, quero baixar os dados para meu computador, para que possa analisá-la usando um software externo. | - [ ] |
+| ID | Requisito | História | Sprint | Prioridade
+|----|-----------|----------|-----------|--
+| 1 | Gráfico | Eu, como usuário, quero visualizar os dados em formato de gráficos, para que eu possa melhor enxergar como os dados se comportam | 1-2 | 🟥Muito Alta
+| 2 | Backlog | Eu, como cliente, quero um product backlog, para melhor analisar o andamento do projeto | 1 | 🟥Muito Alta
+| 3 | Protótipo estático | Eu, como cliente, quero uma versão estática do site, para que eu possa ter uma ideia melhor de seu funcionamento | 1 | 🟥Muito Alta
+| 4 | Wireframe mobile | Eu, como cliente, quero um wireframe mobile, para melhor visualizar o funcionamento e a interface em dispositivos móveis | 1 | 🟥Muito Alta
+| 5 | Exibição dos dados | Eu, como usuário, quero visualizar os dados em formato de tabela, para que eu possa analisar as variações ocorridas ao longo do dia | 2 | 🟨Alta
+| 6 | Pesquisa por período de tempo | Eu, como usuário, quero poder pesquisar os dados em um determinado range de dias, para eu que possa analisar como a estufa se comportou naquele período. | 2 | 🟨Alta
+| 7 | Timelapse | Eu, como usuário, quero um timelapse das datas, para que eu possa visualizar rapidamente quais datas possuem dados registrados. | 1-3 | 🟨Alta
+| 8 | Resumo dos dados | Eu, como usuário, quero visualizar um resumo das médias diárias dos dados registrados, para que eu possa visualizar rapidamente as variações dos dados. | 1-3 | 🟨Alta
+| 9 | Wireframe desktop | Eu, como cliente, quero um wireframe desktop, para melhor visualizar o funcionamento e a interface em dispositivos desktop | 2-3 | 🟨Alta
+| 10 | Protótipo dinâmico | Eu, como cliente, quero uma versão dinâmica do site, para que eu possa usufruir dele em meu projeto | 3 | 🟨Alta
+| 11 | Leitura de dados externos | Eu, como usuário, quero importar um arquivo de planilha, para que eu possa rapidamente registrar os dados capturados pelo sensor. | 2 | 🟨Alta
+| 12 | Código de segurança | Eu, como usuário, quero que seja pedido um código de segurança ao deletar os dados de um dia, para que eu possa evitar que acidentes ocorram. | 2 | 🟨Alta
+| 13 | Filtragem de dados | Eu, como usuário, quero filtrar qual campo visualizar, para que possa analisar somente um determinado valor. | 3 | 🟩Média
+| 14 | Alterar dados | Eu, como usuário, quero alterar os dados cadastrados dos sensores, para que eu possa corrigir algum dado digitado errado. | 3 | 🟩Média
+| 15 | Deletar dados | Eu, como usuário, quero deletar os dados cadastrados dos sensores, para que eu possa registrar os dados de novo ao invés de editar um por um. | 3 | 🟩Média
+| 16 | Exportação dos gráficos | Eu, como usuário, quero baixar os dados para meu computador, para que possa analisá-lo usando um software externo. | 4 | 🟦Baixa
+| 17 | Cadastrar dados | Eu, como usuário, quero cadastrar dados dos sensores da estufa, para poder monitorar o comportamento das plantas. | 4 | 🟦Baixa
 
 <span id="team">
     
