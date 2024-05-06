@@ -49,7 +49,7 @@ GitHub / Flask / Html / Css / JavaScript / MySQL / Figma / Jira
 | Back-End | Armazenar códigos de acesso | 22/4/2024 | João Felipe | 3/5/2024
 | Back-End | Integrar planilha de dados com MySQL | 22/4/2024 | Avya Alex | 3/5/2024
 | Back-End | Criar funcionalidade de digitar a senha para adicionar/remover dados | 22/4/2024 | Victor Bessa | 2/5/2024
-| Back-End | Atualizar o README | 22/4/2024 | Davi Marinho | 10/4/2024
+| Documentação | Atualizar o README | 22/4/2024 | Pedro Prevides | 5/5/2024
 
 <span id="backlog">
     
