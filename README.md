@@ -40,7 +40,7 @@ GitHub / Flask / Html / Css / JavaScript / MySQL / Figma / Jira
 | Tipo | Descrição | Data de início | Responsável | Data de término
 |------|-----------|--|--|--|
 | Front-End | Otimizar o sistema de pesquisa por data | 22/4/2024 | Gabriel Guimarães | 2/5/2024
-| Front-End | Ajustar a responsividade para desktop | 22/4/2024 | João Suzuki | 29/4/2024
+| Front-End | Ajustar a responsividade para desktop | 22/4/2024 | João Suzuki | 4/5/2024
 | Front-End | Criar o símbolo do dia | 22/4/2024 | João Góes | 2/5/2024
 | Front-End | Sincronizar a pesquisa de data com o timelapse | 22/4/2024 | Carlos Intrieri | 2/5/2024
 | Front-End | Criar os botões | 22/4/2024 | Pedro Prevides | 2/5/2024
@@ -84,7 +84,7 @@ GitHub / Flask / Html / Css / JavaScript / MySQL / Figma / Jira
 | João Suzuki | Product Owner | [GitHub](https://github.com/joaosuzuki98) | [LinkedIn](https://www.linkedin.com/in/jo%C3%A3o-suzuki-6a2b02192/) |
 | Carlos Intrieri | Scrum Master | [GitHub](https://github.com/carlosintrieri) | [LinkedIn](https://www.linkedin.com/in/carlosintrieri) |
 | Avya Alex | Dev Team | [GitHub](https://github.com/AvyaAquino) | [LinkedIn](https://www.linkedin.com/in/avya-candido-598b5228a/) |
-| Davi Marinho | Dev Team | [GitHub](https://github.com/DMBMz) | LinkedIn |
+| Davi Marinho | Dev Team | [GitHub](https://github.com/DMBMz) | [LinkedIn](https://www.linkedin.com/in/davi-miguel-a90821214/)|
 | Gabriel Guimaraes | Dev Team | [GitHub](https://github.com/gabrielbguimaraes) | [LinkedIn](https://www.linkedin.com/in/gabriel-g-854017138?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app) |
 | João Felipe | Dev Team | [GitHub](https://github.com/jfiliprc) | [LinkedIn](https://www.linkedin.com/in/joão-felipe-rocha/) |
 | João Góes | Dev Team | [GitHub](https://github.com/MagNumGomes) | [LinkedIn](www.linkedin.com/in/joão-vítor-góes-b82b63302) |
