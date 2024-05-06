@@ -29,13 +29,13 @@ GitHub / Flask / Html / Css / JavaScript / MySQL / Figma / Jira
     
 ## MVP
 
-<img src="./docs/2024-04-16 08-24-48.gif">
+<img src="./docs/Sprint-1/mvp-sprint-1">
 
 <span id="sprint">
     
 ## Sprints
 
-[Sprint 1 →](.docs/Sprint 1/sprint-1.md)
+[Sprint 1 →](./docs/Sprint-1/sprint-1.md)
 
 | Tipo | Descrição | Data de início | Responsável | Data de término
 |------|-----------|--|--|--|
