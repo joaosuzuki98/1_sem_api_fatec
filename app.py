@@ -3,6 +3,8 @@ import os
 from openpyxl import load_workbook
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import distinct
+from filters import enumerate_filter
 import variables
 import datetime
 app = Flask(__name__)
@@ -32,13 +34,30 @@ class Data(db.Model):
 with app.app_context():
     db.create_all()
 
+# Registrando o filtro criado em filters.py
+app.jinja_env.filters['enumerate'] = enumerate_filter
+
 
 @app.route("/")
 def index():
     overview_list = zip(variables.svg_overview_list, variables.overview_desc)
 
-    mes = datetime.datetime.now().strftime('%h')
-    return render_template('index.html', overview_list=overview_list, mes=mes)
+    # Realizando um select * em nossa tabela e guardando estes valores em
+    # uma variável
+    dados_db = Data.query.all()
+
+    # Aqui estou pegando todos os valores do campo date e os tornando único,
+    # pois há vários dias iguais gravados no banco de dados
+    datas = db.session.query(distinct(Data.date)).all()
+
+    datas_index = 0  # variável necessária para atribuir ao atributo key a data completa
+
+    return render_template(
+        'index.html',
+        overview_list=overview_list,
+        dados_db=dados_db,
+        datas=datas,
+        datas_index=datas_index)
 
 
 @app.route("/trocar", methods=["POST"])
