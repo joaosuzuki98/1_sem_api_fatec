@@ -27,7 +27,6 @@ const swiper = new Swiper(".swiper", {
 const swiperEle = document.querySelector('.swiper').swiper;
 const slideLinks = document.querySelectorAll('.slide-link');
 const overviewText = document.querySelectorAll('.overview-text');
-const slideLazy = document.querySelectorAll('.slide-lazy');
 
 overviewRandom(overviewText);
 
@@ -80,30 +79,20 @@ const searchBar = document.getElementById('searchBar');
 searchBar.addEventListener('submit', function (e) {
     e.preventDefault();
     var selectedDate = document.getElementById('birthday').value.split("-");
-    console.log(selectedDate);
-    // var selectedDay = parseInt(Number(selectedDate[2]), 10);
-    // selectedDay = String(selectedDay);
+    // Esta flag é necessária senão o alert sempre irá disparar
+    var dayFound = false;
 
-    // swiperEle.slides.forEach((slide, index) => {
-    //     if (selectedDay === slide.textContent.trim()) {
-    //         swiperEle.slideTo(index - 1, 1000);
-    //     }
-    // })
+    // Aqui cada chave do slide é checado com o valor enviado na barra de pesquisa de dia
+    slideLinks.forEach((slide, index) => {
+        const slideKey = slide.getAttribute('key').split(",");
+        // Cada índice do selectedDate é um valor enviado na barra de pesquisa
+        // 0 = ano, 1 = mês e 2 = dia
+        // O slideKey segue esta mesma lógica, porém como ele vem com uma formatação estranha,
+        // é necessária remover espaços e outros caracteres, por isso o uso de trim e replace
+        if (slideKey[0].slice(15, 19) === selectedDate[0] && slideKey[1].trim() == selectedDate[1] && slideKey[2].trim().replace(')', '') == parseInt(selectedDate[2])) {
+            dayFound = true;
+            return swiperEle.slideTo(index - 1, 2500);
+        }
+    })
+    if (!dayFound) alert('Dia não registrado');
 });
-
-// function updateMonthAndYear() {
-//     var selectedDate = document.getElementById('birthday').value;
-//     console.log(selectedDate);
-//     var dateObj = new Date(selectedDate);
-//     var monthIndex = dateObj.getMonth();
-//     var monthNames = [
-//         "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-//         "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
-//     ];
-//     var monthName = monthNames[monthIndex];
-//     document.getElementById('mes-timelapse').textContent = monthName;
-//     document.getElementById('ano-timelapse').textContent = dateObj.getFullYear();
-// }
-
-// Adiciona um evento para chamar a função updateMonthAndYear() quando a data é selecionada
-// document.getElementById('birthday').addEventListener('change', updateMonthAndYear);
