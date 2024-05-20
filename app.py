@@ -5,10 +5,13 @@ from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
 import variables
 import datetime
+from collections import defaultdict
 app = Flask(__name__)
 codigo = 'c0d1g0'
 ALLOWED_EXTENSIONS = {'xlsx'}
-
+hjdia='12'
+hjmes='09'
+hjano='2023'
 
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in \
@@ -36,6 +39,9 @@ with app.app_context():
 @app.route("/")
 def index():
     overview_list = zip(variables.svg_overview_list, variables.overview_desc)
+    
+
+    # Retornar os dados para o template do Chart.js
 
     mes = datetime.datetime.now().strftime('%h')
     return render_template('index.html', overview_list=overview_list, mes=mes)
@@ -64,7 +70,31 @@ def trocar():
 
 @app.route("/show-data")
 def show_data():
-    return render_template('show_data.html')
+     # Dicionário para armazenar as médias por data e por atributo
+    media_por_dia_e_atributo = defaultdict(lambda: defaultdict(float))
+
+    # Consultar os dados do banco de dados agrupados por data
+    dados_por_dia = db.session.query(Data.date, Data.soil_humidity, Data.ambient_humidity, Data.ambient_temperature, Data.water_volume).all()
+
+    # Calcular a média para cada dia e para cada atributo
+    for data, soil_humidity, ambient_humidity, ambient_temperature, water_volume in dados_por_dia:
+        media_por_dia_e_atributo[data]["soil_humidity"] += soil_humidity
+        media_por_dia_e_atributo[data]["ambient_humidity"] += ambient_humidity
+        media_por_dia_e_atributo[data]["ambient_temperature"] += ambient_temperature
+        media_por_dia_e_atributo[data]["water_volume"] += water_volume
+
+    # Dividir a soma pelo número de entradas para obter a média
+    for data, valores in media_por_dia_e_atributo.items():
+        quantidade_entradas = len([d for d, *_ in dados_por_dia if d == data])
+        for atributo in valores:
+            media_por_dia_e_atributo[data][atributo] /= quantidade_entradas
+
+    # Agora você tem um dicionário onde as chaves são as datas e os valores são dicionários contendo as médias de cada atributo para cada dia
+
+    # Exibir o dicionário (opcional)
+    print(media_por_dia_e_atributo)
+
+    return render_template('show_data.html', )
 
 
 @app.route("/add-data")
@@ -87,12 +117,13 @@ def del_dia():
 
 @app.route("/statistics")
 def statistics():
-    return render_template('statistics.html')
+    return render_template('statistics.html',media_por_dia_e_atributo=media_por_dia_e_atributo)
 
 
 @app.route("/upload", methods=["POST"])
 def upload():
     if request.method == "POST":
+        table_html = "<table>"
         file = request.files["file"]
         if not os.path.exists('./uploads'):
             os.mkdir('./uploads')
@@ -120,6 +151,5 @@ def upload():
                         cell = sheet.cell(row=row, column=col)
                         table_html += f"<td style='color: black'>{cell.value}</td>"
                     table_html += "</tr>"
-            db.session.commit()
-            return render_template("add_data.html", table_html=table_html)
-
+        db.session.commit()
+        return render_template("add_data.html", table_html=table_html)
