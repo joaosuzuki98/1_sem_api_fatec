@@ -4,7 +4,7 @@ from openpyxl import load_workbook
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
 import variables
-import datetime
+from datetime import datetime
 from collections import defaultdict
 app = Flask(__name__)
 codigo = 'c0d1g0'
@@ -70,30 +70,7 @@ def trocar():
 
 @app.route("/show-data")
 def show_data():
-     # Dicionário para armazenar as médias por data e por atributo
-    media_por_dia_e_atributo = defaultdict(lambda: defaultdict(float))
-
-    # Consultar os dados do banco de dados agrupados por data
-    dados_por_dia = db.session.query(Data.date, Data.soil_humidity, Data.ambient_humidity, Data.ambient_temperature, Data.water_volume).all()
-
-    # Calcular a média para cada dia e para cada atributo
-    for data, soil_humidity, ambient_humidity, ambient_temperature, water_volume in dados_por_dia:
-        media_por_dia_e_atributo[data]["soil_humidity"] += soil_humidity
-        media_por_dia_e_atributo[data]["ambient_humidity"] += ambient_humidity
-        media_por_dia_e_atributo[data]["ambient_temperature"] += ambient_temperature
-        media_por_dia_e_atributo[data]["water_volume"] += water_volume
-
-    # Dividir a soma pelo número de entradas para obter a média
-    for data, valores in media_por_dia_e_atributo.items():
-        quantidade_entradas = len([d for d, *_ in dados_por_dia if d == data])
-        for atributo in valores:
-            media_por_dia_e_atributo[data][atributo] /= quantidade_entradas
-
-    # Agora você tem um dicionário onde as chaves são as datas e os valores são dicionários contendo as médias de cada atributo para cada dia
-
-    # Exibir o dicionário (opcional)
-    print(media_por_dia_e_atributo)
-
+  
     return render_template('show_data.html', )
 
 
@@ -117,7 +94,62 @@ def del_dia():
 
 @app.route("/statistics")
 def statistics():
-    return render_template('statistics.html',media_por_dia_e_atributo=media_por_dia_e_atributo)
+    lista=['2023-09-12','2023-09-13','2023-09-14']
+    listasoilh = []
+    listaambienth = []
+    listaambientt = []
+    listawater = []
+    for date_str in lista:
+        try:
+            # Converter a string de data para um objeto date
+            dia = datetime.strptime(date_str, '%Y-%m-%d').date()
+        except ValueError:
+            return jsonify({"error": "Invalid date format. Use YYYY-MM-DD."}), 400
+    for dia in lista:
+        dados_por_dia = db.session.query(Data).filter_by(date=dia).all()
+
+        if not dados_por_dia:
+            return jsonify({"message": f"No data found for {date}."})
+
+        # Dicionário para armazenar somas e contagens por atributo
+        soma_por_atributo = defaultdict(float)
+        contagem_por_atributo = defaultdict(int)
+
+        # Calcular a soma e contagem para cada atributo
+        for data in dados_por_dia:
+            soma_por_atributo["soil_humidity"] += data.soil_humidity
+            soma_por_atributo["ambient_humidity"] += data.ambient_humidity
+            soma_por_atributo["ambient_temperature"] += data.ambient_temperature
+            soma_por_atributo["water_volume"] += data.water_volume
+            contagem_por_atributo["soil_humidity"] += 1
+            contagem_por_atributo["ambient_humidity"] += 1
+            contagem_por_atributo["ambient_temperature"] += 1
+            contagem_por_atributo["water_volume"] += 1
+        
+        # Calcular as médias
+        media_por_atributo = {atributo: soma_por_atributo[atributo] / contagem_por_atributo[atributo] for atributo in soma_por_atributo}
+        listasoilh.append(media_por_atributo["soil_humidity"])
+        listaambienth.append(media_por_atributo["ambient_humidity"])
+        listaambientt.append(media_por_atributo["ambient_temperature"])
+        listawater.append(media_por_atributo["water_volume"])
+       
+    print("Lista Soil Humidity:", listasoilh)
+    print("Lista Ambient Humidity:", listaambienth)
+    print("Lista Ambient Temperature:", listaambientt)
+    print("Lista Water Volume:", listawater)
+    
+   
+
+    # Agora você tem um dicionário onde as chaves são as datas e os valores são dicionários contendo as médias de cada atributo para cada dia
+
+    # Exibir o dicionário (opcional)
+    
+
+    return render_template('statistics.html', 
+                           soil_humidity=listasoilh,
+                           ambient_humidity=listaambienth,
+                           ambient_temperature=listaambientt,
+                           water_volume=listawater,  dates=lista)
 
 
 @app.route("/upload", methods=["POST"])
