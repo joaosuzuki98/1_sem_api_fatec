@@ -43,7 +43,7 @@ def index():
 
     # Retornar os dados para o template do Chart.js
 
-    mes = datetime.datetime.now().strftime('%h')
+    mes = datetime.now().strftime('%h')
     return render_template('index.html', overview_list=overview_list, mes=mes)
 
 
@@ -94,7 +94,7 @@ def del_dia():
 
 @app.route("/statistics")
 def statistics():
-    lista=['2023-09-12','2023-09-13','2023-09-14']
+    lista=["2023-09-12","2023-09-13","2023-09-14"]
     listasoilh = []
     listaambienth = []
     listaambientt = []
@@ -109,7 +109,7 @@ def statistics():
         dados_por_dia = db.session.query(Data).filter_by(date=dia).all()
 
         if not dados_por_dia:
-            return jsonify({"message": f"No data found for {date}."})
+            return jsonify({"message": f"No data found for {dia}."})
 
         # Dicionário para armazenar somas e contagens por atributo
         soma_por_atributo = defaultdict(float)
@@ -137,7 +137,7 @@ def statistics():
     print("Lista Ambient Humidity:", listaambienth)
     print("Lista Ambient Temperature:", listaambientt)
     print("Lista Water Volume:", listawater)
-    
+    print(lista)
    
 
     # Agora você tem um dicionário onde as chaves são as datas e os valores são dicionários contendo as médias de cada atributo para cada dia
@@ -146,10 +146,10 @@ def statistics():
     
 
     return render_template('statistics.html', 
-                           soil_humidity=listasoilh,
-                           ambient_humidity=listaambienth,
-                           ambient_temperature=listaambientt,
-                           water_volume=listawater,  dates=lista)
+                           listasoilh=listasoilh,
+                           listaambienth=listaambienth,
+                           listaambientt=listaambientt,
+                           listawater=listawater,  lista=lista)
 
 
 @app.route("/upload", methods=["POST"])
@@ -170,7 +170,7 @@ def upload():
             for row in range(1, sheet.max_row + 1):
                 try:
                     info = Data()
-                    info.date = datetime.datetime.strptime(str(sheet.cell(row=row, column=2).value).split(" ")[0], "%Y-%m-%d")
+                    info.date = datetime.strptime(str(sheet.cell(row=row, column=2).value).split(" ")[0], "%Y-%m-%d")
                     info.time = sheet.cell(row=row, column=3).value
                     info.soil_humidity = sheet.cell(row=row, column=4).value
                     info.ambient_humidity = sheet.cell(row=row, column=5).value

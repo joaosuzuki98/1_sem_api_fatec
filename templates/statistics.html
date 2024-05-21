@@ -15,23 +15,24 @@
         <svg width="24" heigh="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M17 9.00195C19.175 9.01406 20.3529 9.11051 21.1213 9.8789C22 10.7576 22 12.1718 22 15.0002V16.0002C22 18.8286 22 20.2429 21.1213 21.1215C20.2426 22.0002 18.8284 22.0002 16 22.0002H8C5.17157 22.0002 3.75736 22.0002 2.87868 21.1215C2 20.2429 2 18.8286 2 16.0002L2 15.0002C2 12.1718 2 10.7576 2.87868 9.87889C3.64706 9.11051 4.82497 9.01406 7 9.00195" stroke="#efefef" stroke-width="1.5" stroke-linecap="round"></path> <path d="M12 2L12 15M12 15L9 11.5M12 15L15 11.5" stroke="#efefef" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
     </a>
     <script>
+         const labels = {
+    dias: {{ lista | safe }}.flat()
+};
+       const soilHumidityData = {
+    soil_humidity: {{ listasoilh | safe }}.flat()
+};
 
-        const labels = tojson(dates);
-        const soilHumidityData = {
-        soil_humidity: tojson(soil_humidity)
-      };
-      
-      const ambientHumidityData = {
-        ambient_humidity: tojson(ambient_humidity)
-      };
-      
-      const ambientTemperatureData = {
-        ambient_temperature: tojson(ambient_temperature)
-      };
-      
-      const waterVolumeData = {
-        water_volume: tojson(water_volume)
-      };
+const ambientHumidityData = {
+    ambient_humidity: {{listaambienth}}.flat()
+};
+
+const ambientTemperatureData = {
+    ambient_temperature: {{listaambientt}}.flat()
+};
+
+const waterVolumeData = {
+    water_volume: {{listawater}}.flat()
+};
         console.log(soilHumidityData);
         console.log(ambientHumidityData);
         console.log(ambientTemperatureData);
@@ -41,7 +42,7 @@
     document.getElementById('myChart'), {
         type: 'line',
         data: {
-            labels: labels,
+            labels: Array.from(labels),
             datasets: [{
                 label: 'Umidade (%)',
                 data: ambientHumidityData,
@@ -72,7 +73,7 @@ var anotherChart = new Chart(
     document.getElementById('anotherChart'), {
         type: 'line',
         data: {
-            labels: labels,
+            labels: Array.from(labels),
             datasets: [{
                 label: 'Umidade do Solo (%)',
                 data: soilHumidityData,
@@ -103,7 +104,7 @@ var evenAnotherChart = new Chart(
     document.getElementById('evenAnotherChart'), {
         type: 'line',
         data: {
-            labels: labels,
+            labels: Array.from(labels),
             datasets: [{
                 label: 'Volume da Água (Litros)',
                 data: waterVolumeData,
@@ -134,10 +135,10 @@ var oneLastChart = new Chart(
     document.getElementById('oneLastChart'), {
         type: 'line',
         data: {
-            labels: labels,
+            labels: Array.from(labels),
             datasets: [{
                 label: 'Temperatura Ambiente (°C)',
-                data: {{ambient_temperature}},
+                data: ambientTemperatureData,
                 borderColor: 'purple',
                 fill: false,
             }]
@@ -160,5 +161,6 @@ var oneLastChart = new Chart(
             }
         }
     });
+        
     </script>
 {% endblock %}
