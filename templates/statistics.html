@@ -33,19 +33,19 @@ const ambientTemperatureData = {
 const waterVolumeData = {
     water_volume: {{listawater}}.flat()
 };
-        console.log(soilHumidityData);
-        console.log(ambientHumidityData);
-        console.log(ambientTemperatureData);
-        console.log(waterVolumeData);
-        console.log(labels);
+        console.log(soilHumidityData.soil_humidity);
+        console.log(ambientHumidityData.ambient_humidity);
+        console.log(ambientTemperatureData.ambient_temperature);
+        console.log(waterVolumeData.water_volume);
+        console.log(labels.dias);
         var myChart = new Chart(
     document.getElementById('myChart'), {
         type: 'line',
         data: {
-            labels: Array.from(labels),
+            labels: labels.dias,
             datasets: [{
                 label: 'Umidade (%)',
-                data: ambientHumidityData,
+                data: ambientHumidityData.ambient_humidity,
                 borderColor: 'blue',
                 fill: false
             }]
@@ -73,10 +73,10 @@ var anotherChart = new Chart(
     document.getElementById('anotherChart'), {
         type: 'line',
         data: {
-            labels: Array.from(labels),
+            labels: labels.dias,
             datasets: [{
                 label: 'Umidade do Solo (%)',
-                data: soilHumidityData,
+                data: soilHumidityData.soil_humidity,
                 borderColor: 'green',
                 fill: false
             }]
@@ -104,10 +104,10 @@ var evenAnotherChart = new Chart(
     document.getElementById('evenAnotherChart'), {
         type: 'line',
         data: {
-            labels: Array.from(labels),
+            labels: labels.dias,
             datasets: [{
                 label: 'Volume da Água (Litros)',
-                data: waterVolumeData,
+                data: waterVolumeData.water_volume,
                 borderColor: 'orange',
                 fill: false
             }]
@@ -135,10 +135,10 @@ var oneLastChart = new Chart(
     document.getElementById('oneLastChart'), {
         type: 'line',
         data: {
-            labels: Array.from(labels),
+            labels: labels.dias  ,
             datasets: [{
                 label: 'Temperatura Ambiente (°C)',
-                data: ambientTemperatureData,
+                data: ambientTemperatureData.ambient_temperature,
                 borderColor: 'purple',
                 fill: false,
             }]
