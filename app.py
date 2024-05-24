@@ -70,8 +70,13 @@ def trocar():
 
 @app.route("/show-data")
 def show_data():
-  
-    return render_template('show_data.html', )
+    
+    data = request.get_json()
+    variable = data['variable']
+    # Do something with variable
+    
+    dados_por_dia = db.session.query(Data).filter_by(date=variable).all()
+    return jsonify({'status': 'success'}), 200
 
 
 @app.route("/add-data")

@@ -93,3 +93,20 @@ document.getElementById('birthday').addEventListener('change', updateMonthAndYea
 // TODO -> Comentado porque está dando um erro, como o formulário não manda nenhum
 // valor ao carregar a página, ele pega nenhum valor :/
 // updateMonthAndYear();
+const dia = document.getElementById('dia'
+)
+let data ={}
+    dia.onclick=function(){
+    let data = {variable: dia};  // Replace with your data
+    }
+
+
+ 
+fetch('/show-data', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+}).then(response => response.json())
+  .then(data => console.log(data));
