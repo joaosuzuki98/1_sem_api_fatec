@@ -98,10 +98,17 @@ def delete_data():
 
 @app.route("/del-dia", methods=["POST"])
 def del_dia():
-    senha = request.form['senha']
-    if senha == codigo:
-        return render_template("delete_data.html", success="Dia deletado com sucesso.")
-    return render_template("delete_data.html", error="Código de segurança errado.")
+    if 'date' in request.form:
+        data_atual = request.form['date']
+        data_atual = datetime.datetime.strptime(data_atual, "%Y-%m-%d").date() 
+        deleted_data = Data.query.filter_by(date=data_atual).delete()
+        db.session.commit()
+        if deleted_data:
+            return render_template("delete_data.html", success="Dia deletado com sucesso.")
+        else:
+            return render_template("delete_data.html", error="Nenhum dado encontrado para a data fornecida.")
+    else:
+        return render_template("delete_data.html", error="Data não fornecida.")
 
 
 @app.route("/statistics")
