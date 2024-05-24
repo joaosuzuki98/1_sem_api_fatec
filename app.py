@@ -4,7 +4,7 @@ from openpyxl import load_workbook
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
 import variables
-from datetime import datetime
+from datetime import datetime , timedelta
 from collections import defaultdict
 app = Flask(__name__)
 codigo = 'c0d1g0'
@@ -94,32 +94,37 @@ def del_dia():
 
 @app.route("/statistics", methods=["GET", "POST"])
 def statistics():
-    lista = []
-    
-    
+    lista = ['2023-09-14','2023-09-18']
+    listad=[]
     if request.method == "POST":
-        j = int(request.form["datei"])
-        d = int(request.form["datef"])
-        k = int(request.form["meses"])
-    else:
-            d = 30
-            k=9
-            j = 14 if k == 9 else 1
- 
+        date = str(request.form["data"])
+        dia = int(date[:2])
+        mes = int(date[3:5])
+        ano = int(date[6:])
+        datef = str(request.form["dataf"])
         
-    for l in range(j, d+1):
-            if k < 10 and l < 10:
-                lista.append(f"2023-0{k}-0{l}")
-            elif k < 10:
-                lista.append(f"2023-0{k}-{l}")
-            elif l < 10:
-                lista.append(f"2023-{k}-0{l}")
-            else:
-                lista.append(f"2023-{k}-{l}")
+        diaf = int(datef[:2])
+        mesf = int(datef[3:5])
+        anof = int(datef[6:])
+        
+        start_date = datetime(ano, mes, dia)
+        end_date = datetime(anof, mesf, diaf)
+        
+        lista = []
+        
+        current_date = start_date
+        while current_date <= end_date:
+            lista.append(current_date.strftime('%Y-%m-%d'))
+            current_date += timedelta(days=1)
+        
+        print(lista)
+        
+    print(lista,"1")
     listasoilh = []
     listaambienth = []
     listaambientt = []
     listawater = []
+    
     for date_str in lista:
         try:
             # Converter a string de data para um objeto date

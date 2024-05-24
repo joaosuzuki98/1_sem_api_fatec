@@ -5,17 +5,11 @@
     <p>Visualização de gráficos</p>
    <div> <form action="/statistics" method="post" id="searchForm">
     <label for="month">Inicio:</label>
-    <!--
-    <select id="month" name="codigo_mes">
-        <option value="01">Janeiro</option>
-        <option value="02">Fevereiro</option>
-        <option value="03">Março</option>
-    </select>
-  -->
-    <input type="text" id="datei" name="datei"> <!-- Campo de entrada de data adicionado -->
-  
     
-    <label for="month">Fim:</label>
+    <input type="text" id="datei" name="data"> <!-- Campo de entrada de data adicionado -->
+    <label for="month">Final:</label>
+    <input type="text" id="datei" name="dataf"> <!-- Campo de entrada de data adicionado -->
+    
     <!--
     <select id="month" name="codigo_mes">
         <option value="01">Janeiro</option>
@@ -23,11 +17,6 @@
         <option value="03">Março</option>
     </select>
   -->
-    <input type="text" id="datef" name="datef"> 
-
-    <label for="month">Mês:</label>
-    <input type="text" id="meses" name="meses">
-
     <input type="submit" value="Pesquisar">
 </form>
 </div>
