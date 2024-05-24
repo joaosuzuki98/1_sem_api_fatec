@@ -99,33 +99,34 @@ def del_dia():
 
 @app.route("/statistics", methods=["GET", "POST"])
 def statistics():
-    lista = ['2023-09-14','2023-09-18']
-    listad=[]
+    lista = []
     if request.method == "POST":
-        date = str(request.form["data"]).split("-")
+        interval = request.form.get("interval")
+        if interval:
+            interval = int(interval)
+            end_date = datetime.now()
+            start_date = end_date - timedelta(days=interval)
+            lista = [(start_date + timedelta(days=i)).strftime('%Y-%m-%d') for i in range((end_date - start_date).days + 1)]
+        else:
+            date = str(request.form["data"]).split("-")
+            dia = int(date[2])
+            mes = int(date[1])
+            ano = int(date[0])
+            datef = str(request.form["dataf"]).split("-")
+            diaf = int(datef[2])
+            mesf = int(datef[1])
+            anof = int(datef[0])
 
-        dia = int(date[2])
-        mes = int(date[1])
-        ano = int(date[0])
-        datef = str(request.form["dataf"]).split("-")
-        
-        diaf = int(datef[2])
-        mesf = int(datef[1])
-        anof = int(datef[0])
-        
-        start_date = datetime(ano, mes, dia)
-        end_date = datetime(anof, mesf, diaf)
-        
-        lista = []
-        
-        current_date = start_date
-        while current_date <= end_date:
-            lista.append(current_date.strftime('%Y-%m-%d'))
-            current_date += timedelta(days=1)
+            start_date = datetime(ano, mes, dia)
+            end_date = datetime(anof, mesf, diaf)
+            
+            current_date = start_date
+            while current_date <= end_date:
+                lista.append(current_date.strftime('%Y-%m-%d'))
+                current_date += timedelta(days=1)
         
         print(lista)
-        
-    print(lista,"1")
+    
     listasoilh = []
     listaambienth = []
     listaambientt = []
@@ -133,13 +134,11 @@ def statistics():
     
     for date_str in lista:
         try:
-            # Converter a string de data para um objeto date
             dia = datetime.strptime(date_str, '%Y-%m-%d').date()
         except ValueError:
             return jsonify({"error": "Invalid date format. Use YYYY-MM-DD."}), 400
-    for dia in lista:
+    
         dados_por_dia = db.session.query(Data).filter_by(date=dia).all()
-
         if not dados_por_dia:
             return jsonify({"message": f"No data found for {dia}."})
 
