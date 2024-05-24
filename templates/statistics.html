@@ -3,12 +3,12 @@
 {% block content %}
 
     <p>Visualização de gráficos</p>
-   <div> <form action="/statistics" method="post" id="searchForm">
-    <label for="month">Inicio:</label>
+   <div class="form"> <form action="/statistics" id="center" method="post" id="searchForm">
+    <label for="month" class="formitem">Inicio:</label>
     
-    <input type="text" id="datei" name="data"> <!-- Campo de entrada de data adicionado -->
-    <label for="month">Final:</label>
-    <input type="text" id="datei" name="dataf"> <!-- Campo de entrada de data adicionado -->
+    <input type="date" class="datei formitem" name="data"> <!-- Campo de entrada de data adicionado -->
+    <label for="month" class="formitem">Final:</label>
+    <input type="date" class="datei formitem" name="dataf"> <!-- Campo de entrada de data adicionado -->
     
     <!--
     <select id="month" name="codigo_mes">
@@ -17,7 +17,7 @@
         <option value="03">Março</option>
     </select>
   -->
-    <input type="submit" value="Pesquisar">
+    <input type="submit" class="formbtn" value="Pesquisar">
 </form>
 </div>
     <div id="chart-container">

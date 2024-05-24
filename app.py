@@ -97,15 +97,16 @@ def statistics():
     lista = ['2023-09-14','2023-09-18']
     listad=[]
     if request.method == "POST":
-        date = str(request.form["data"])
-        dia = int(date[:2])
-        mes = int(date[3:5])
-        ano = int(date[6:])
-        datef = str(request.form["dataf"])
+        date = str(request.form["data"]).split("-")
+
+        dia = int(date[2])
+        mes = int(date[1])
+        ano = int(date[0])
+        datef = str(request.form["dataf"]).split("-")
         
-        diaf = int(datef[:2])
-        mesf = int(datef[3:5])
-        anof = int(datef[6:])
+        diaf = int(datef[2])
+        mesf = int(datef[1])
+        anof = int(datef[0])
         
         start_date = datetime(ano, mes, dia)
         end_date = datetime(anof, mesf, diaf)
