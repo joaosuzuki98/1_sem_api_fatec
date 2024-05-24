@@ -92,9 +92,30 @@ def del_dia():
     return render_template("delete_data.html", error="Código de segurança errado.")
 
 
-@app.route("/statistics")
+@app.route("/statistics", methods=["GET", "POST"])
 def statistics():
-    lista=["2023-09-12","2023-09-13","2023-09-14"]
+    lista = []
+    
+    
+    if request.method == "POST":
+        j = int(request.form["datei"])
+        d = int(request.form["datef"])
+        k = int(request.form["meses"])
+    else:
+            d = 30
+            k=9
+            j = 14 if k == 9 else 1
+ 
+        
+    for l in range(j, d+1):
+            if k < 10 and l < 10:
+                lista.append(f"2023-0{k}-0{l}")
+            elif k < 10:
+                lista.append(f"2023-0{k}-{l}")
+            elif l < 10:
+                lista.append(f"2023-{k}-0{l}")
+            else:
+                lista.append(f"2023-{k}-{l}")
     listasoilh = []
     listaambienth = []
     listaambientt = []
@@ -115,19 +136,19 @@ def statistics():
         soma_por_atributo = defaultdict(float)
         contagem_por_atributo = defaultdict(int)
 
-        # Calcular a soma e contagem para cada atributo
-        for data in dados_por_dia:
-            soma_por_atributo["soil_humidity"] += data.soil_humidity
-            soma_por_atributo["ambient_humidity"] += data.ambient_humidity
-            soma_por_atributo["ambient_temperature"] += data.ambient_temperature
-            soma_por_atributo["water_volume"] += data.water_volume
+      # Calcular a soma e contagem para cada atributo
+        for data in dados_por_dia:  
+            soma_por_atributo["soil_humidity"] += round(data.soil_humidity, 2)
+            soma_por_atributo["ambient_humidity"] += round(data.ambient_humidity, 2)
+            soma_por_atributo["ambient_temperature"] += round(data.ambient_temperature, 2)
+            soma_por_atributo["water_volume"] += round(data.water_volume*1000, 2)
             contagem_por_atributo["soil_humidity"] += 1
             contagem_por_atributo["ambient_humidity"] += 1
             contagem_por_atributo["ambient_temperature"] += 1
             contagem_por_atributo["water_volume"] += 1
-        
+                
         # Calcular as médias
-        media_por_atributo = {atributo: soma_por_atributo[atributo] / contagem_por_atributo[atributo] for atributo in soma_por_atributo}
+        media_por_atributo = {atributo: round(soma_por_atributo[atributo] / contagem_por_atributo[atributo], 1) for atributo in soma_por_atributo}
         listasoilh.append(media_por_atributo["soil_humidity"])
         listaambienth.append(media_por_atributo["ambient_humidity"])
         listaambientt.append(media_por_atributo["ambient_temperature"])
