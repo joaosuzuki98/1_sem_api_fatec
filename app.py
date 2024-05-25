@@ -151,7 +151,7 @@ def statistics():
             soma_por_atributo["soil_humidity"] += round(data.soil_humidity, 2)
             soma_por_atributo["ambient_humidity"] += round(data.ambient_humidity, 2)
             soma_por_atributo["ambient_temperature"] += round(data.ambient_temperature, 2)
-            soma_por_atributo["water_volume"] += round(data.water_volume*1000, 2)
+            soma_por_atributo["water_volume"] += round(data.water_volume, 2)
             contagem_por_atributo["soil_humidity"] += 1
             contagem_por_atributo["ambient_humidity"] += 1
             contagem_por_atributo["ambient_temperature"] += 1
@@ -216,3 +216,5 @@ def upload():
                     table_html += "</tr>"
         db.session.commit()
         return render_template("add_data.html", table_html=table_html)
+
+app.run(debug=True, host= '192.168.1.71')

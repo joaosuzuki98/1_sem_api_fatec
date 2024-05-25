@@ -78,11 +78,14 @@
                 datasets: [{
                     label: 'Umidade (%)',
                     data: ambientHumidityData.ambient_humidity,
-                    borderColor: 'blue',
-                    fill: false
+                    color: '#FFF',
+                    borderColor: 'rgba(30, 42, 123, 0.8)',
+                    backgroundColor: 'rgba(23, 27, 54, 0.95)',
+                    fill: true
                 }]
             },
             options: {
+               
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
@@ -111,7 +114,8 @@
                     label: 'Umidade do Solo (%)',
                     data: soilHumidityData.soil_humidity,
                     borderColor: 'green',
-                    fill: false
+                    backgroundColor: 'rgba(11, 118, 36, 0.8)',
+                    fill: true
                 }]
             },
             options: {
@@ -137,13 +141,16 @@
     var evenAnotherChart = new Chart(
         document.getElementById('evenAnotherChart'), {
             type: 'line',
+            backgroundColor: 'white',
+            
             data: {
                 labels: labels.dias,
                 datasets: [{
-                    label: 'Volume da Água (Litros)',
+                    label: 'Volume da Água (Ml)',
                     data: waterVolumeData.water_volume,
                     borderColor: 'orange',
-                    fill: false
+                    backgroundColor: 'rgba(255, 165, 0, 0.8)',
+                    fill: true
                 }]
             },
             options: {
@@ -175,7 +182,8 @@
                     label: 'Temperatura Ambiente (°C)',
                     data: ambientTemperatureData.ambient_temperature,
                     borderColor: 'purple',
-                    fill: false
+                    backgroundColor: 'rgba(128, 0, 128, 0.8)',
+                    fill: true
                 }]
             },
             options: {
@@ -193,6 +201,13 @@
                             color: '#292929'
                         }
                     }
+                },
+                plugins: {
+                legend: {
+                    labels: {
+                        color: 'white'
+                    }
+                }
                 }
             }
         }
