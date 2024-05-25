@@ -14,17 +14,30 @@
   
   <div id="modal" class="modal">
     <span>
-        <p id="modalh1">Digite o codigo de segurança!</p><button id="x">x</button>
+        <p id="modalh1">Digite o codigo de segurança e o dia a ser deletado!</p><a href="/" id="x">
+        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#EF3E36">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+        <g id="SVGRepo_iconCarrier"> <circle cx="12" cy="12" r="10" stroke="#EF3E36" stroke-width="1.5"/> <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="#EF3E36" stroke-width="1.5" stroke-linecap="round"/> </g>
+        </svg>
+    </a>
     </span>
     <form class="formmodal" action = '/del-dia' method="post">
-      <input type="text" name='date' value="" placeholder="date" aria-label="Enviar">
+      <input type="text" name="deldia" id="deldia" title="Delete Day" placeholder="Ano-Mês-Dia">
+      <input type="text" name='senha' value="" placeholder="senha" aria-label="Enviar">
       <button  type="submit">OK</button>
     </form>
   </div>
 
   <div id="modal1" class="modal">
     <span>
-        <p id="modalh2">Mudar Código</p><button id="x2">x</button>
+        <p id="modalh2">Mudar Código</p><a href="/" id="x2">
+          <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#EF3E36">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+          <g id="SVGRepo_iconCarrier"> <circle cx="12" cy="12" r="10" stroke="#EF3E36" stroke-width="1.5"/> <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="#EF3E36" stroke-width="1.5" stroke-linecap="round"/> </g>
+          </svg>
+      </a>
     </span>
     <form class="formmodal" id="formmodal1" action="/trocar" method="POST">
       <label for="senha">Código Anterior</label><br>

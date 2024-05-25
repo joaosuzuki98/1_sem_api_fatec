@@ -17,19 +17,20 @@
         <input type="submit" value="Pesquisar">
     </form>
   </div>
+  <canvas id="thechart"></canvas>
   
+ 
   <!-- Timelapse -->
   <p id="mes-timelapse">
+      {{ mes }}
   </p>
   <div class="swiper">
       <div class="swiper-wrapper">
-      {% for i, data in datas|enumerate %}
+      {% for i in range(1, 32) %}
         <div class="swiper-slide">
           <div class="day-shape">
-            <!--Utilize esta chave para poder pegar o dia em 
-            que a bolinha atualmente está usando o swiper.js -->
-            <a class="slide-link" key="{{ datas[i] }}">
-                <p>{{ data[0].day }}</p>
+            <a class="slide-link">
+                <p id="dia">{{ i }}</p>
               </a>
           </div>
         </div>
@@ -40,6 +41,7 @@
       <div class="swiper-button-next next-btn"></div>
     </div>
     <p id="ano-timelapse">
+      2024
     </p>
 
     <h2 id="overview-title">Média diária</h2>
@@ -78,7 +80,7 @@
         </svg>
       </a>
     </div>
-    
+    <canvas id="thechart"></canvas>
 </div>
 
 
