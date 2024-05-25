@@ -3,21 +3,28 @@
 {% block content %}
 <p>Visualização de gráficos</p>
 <div class="form">
-    <form action="/statistics" id="center" method="post" id="searchForm">
-        <label for="month" class="formitem">Inicio:</label>
-        <input type="date" class="datei formitem" name="data">
-        <label for="month" class="formitem">Final:</label>
-        <input type="date" class="datei formitem" name="dataf">
-        <input type="submit" class="formbtn" value="Pesquisar">
-    </form>
+    
+        <form action="/statistics" id="center" method="post" id="searchForm">
+            <label for="month" id="fitem" class="formitem">Inicio:</label>
+            <input type="date" class="datei formitem" name="data">
+            <label for="month" id="fitem" class="formitem">Final:</label>
+            <input type="date" class="datei formitem" name="dataf">
+            <input type="submit" class="formbtn griditem" value="Pesquisar">
+            
+        </form>
+ 
+    <div class="btn-interval-container">
+        
+
+        <button class="btn-interval " onclick="setDateRange(30)">30 Dias</button>
+        <button class="btn-interval " onclick="setDateRange(15)">15 Dias</button>
+        <button class="btn-interval " onclick="setDateRange(7)">7 Dias</button>
+        <button class="btn-interval " onclick="setDateRange(3)">3 Dias</button>
+    </div>
+   
 </div>
 
-<div class="btn-interval-container">
-    <button class="btn-interval" onclick="setDateRange(30)">30 Dias</button>
-    <button class="btn-interval" onclick="setDateRange(15)">15 Dias</button>
-    <button class="btn-interval" onclick="setDateRange(7)">7 Dias</button>
-    <button class="btn-interval" onclick="setDateRange(3)">3 Dias</button>
-</div>
+
 
 <div id="chart-container">
     <canvas id="myChart" class="grafico"></canvas>
