@@ -53,13 +53,9 @@ swiperEle.on('slideChange', function () {
     activeSliderShape.classList.add('swiper-link');
     activeSliderShape.classList.remove('swiper-no-pointer');
 
-
-    const keySliderShape = activeSliderShape.getAttribute('key');
-    slideLinks[activeSlide + 1].setAttribute('href', `/show-data?date=${keySliderShape}`);
     const dateKey = slideLinks[activeSlide + 1].getAttribute('key');
-    removeBtn.setAttribute('href', `/delete-data?date=${dateKey}`)
-
-    slideLinks[activeSlide + 1].setAttribute('href', '/show-data');
+    removeBtn.setAttribute('href', `/delete-data?date=${dateKey}`);
+    slideLinks[activeSlide + 1].setAttribute('href', `/show-data?date=${dateKey}`);
 
     overviewRandom(overviewText);
 

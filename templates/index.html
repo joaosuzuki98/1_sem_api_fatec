@@ -16,26 +16,26 @@
   <!-- Timelapse -->
 
 
-    <p id="mes-timelapse">
-    </p>
-    <div class="swiper">
-        <div class="swiper-wrapper">
-          {% for i, data in datas|enumerate %}
-            <div class="swiper-slide">
-            <div class="day-shape" key="{{ datas[i] }}">
-                <a class="slide-link" key="{{ datas[i] }}">
-                    <p>{{ data[0].day }}</p>
-                  </a>
-              </div>
+  <p id="mes-timelapse">
+  </p>
+  <div class="swiper">
+      <div class="swiper-wrapper">
+        {% for i, data in datas|enumerate %}
+          <div class="swiper-slide">
+            <div class="day-shape">
+              <a class="slide-link" key="{{ datas[i] }}">
+                  <p>{{ data[0].day }}</p>
+                </a>
             </div>
-          {% endfor %}
-        </div>
-  
-        <div class="swiper-button-prev next-btn"></div>
-        <div class="swiper-button-next next-btn"></div>
+          </div>
+        {% endfor %}
       </div>
-      <p id="ano-timelapse">
-      </p>
+
+      <div class="swiper-button-prev next-btn"></div>
+      <div class="swiper-button-next next-btn"></div>
+    </div>
+    <p id="ano-timelapse">
+    </p>
 
     <h2 id="overview-title">Média diária</h2>
     <div class="overview">
