@@ -3,10 +3,11 @@ import os
 from openpyxl import load_workbook
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import distinct
+from filters import enumerate_filter
 import variables
 import datetime
 app = Flask(__name__)
-codigo = 'c0d1g0'
 ALLOWED_EXTENSIONS = {'xlsx'}
 
 
@@ -28,38 +29,61 @@ class Data(db.Model):
     ambient_temperature = db.Column(db.Float, nullable=False)
     water_volume = db.Column(db.Float, nullable=False)
 
+# tabela para armazenar a senha
+class Code(db.Model): 
+    id = db.Column(db.Integer, primary_key=True)
+    password = db.Column(db.String, nullable=False)
+
 
 with app.app_context():
     db.create_all()
+
+# Registrando o filtro criado em filters.py
+app.jinja_env.filters['enumerate'] = enumerate_filter
 
 
 @app.route("/")
 def index():
     overview_list = zip(variables.svg_overview_list, variables.overview_desc)
 
-    mes = datetime.datetime.now().strftime('%h')
-    return render_template('index.html', overview_list=overview_list, mes=mes)
+    # Realizando um select * em nossa tabela e guardando estes valores em
+    # uma variável
+    dados_db = Data.query.all()
+
+    # Aqui estou pegando todos os valores do campo date e os tornando único,
+    # pois há vários dias iguais gravados no banco de dados
+    datas = db.session.query(distinct(Data.date)).all()
+
+    datas_index = 0  # variável necessária para atribuir ao atributo key a data completa
+
+    return render_template(
+        'index.html',
+        overview_list=overview_list,
+        dados_db=dados_db,
+        datas=datas,
+        datas_index=datas_index)
 
 
 @app.route("/trocar", methods=["POST"])
 def trocar():
-    global codigo
-    senha = request.form["senha"]
-    senhanv = request.form['senhanv']
+    with app.app_context():
+        codigo = Code.query.first()
+        senha = request.form["senha"]
+        senhanv = request.form['senhanv']
 
-    # Validação dos campos
-    if not senha or not senhanv:
-        return render_template("index.html", error="Por favor, preencha todos os campos.")
+        # Validação dos campos
+        if not senha or not senhanv:
+            return render_template("delete_data.html", error="Por favor, preenocha tods os campos.")
 
-    if codigo == senha:
-        if len(senhanv) < 6:  
-            return render_template("index.html", error="O novo código deve ter pelo menos 6 caracteres.")
+        if codigo.password == senha:
+            if len(senhanv) < 6:  
+                return render_template("delete_data.html", error="O novo código deve ter pelo menos 6 caracteres.")
 
-        # Atualiza o código para o novo código fornecido
-        codigo = senhanv
-        return render_template("index.html", success="Código atualizado com sucesso.")
-
-    return render_template("index.html", error="Senha incorreta.")
+            # Atualiza o código para o novo código fornecido
+            codigo.password = senhanv
+            db.session.commit()
+            return render_template("delete_data.html", success="Código atualizado com sucesso.")
+    return render_template("delete_data.html", error="Senha incorreta.")
 
 
 @app.route("/show-data")
@@ -74,13 +98,37 @@ def add_data():
 
 @app.route("/delete-data")
 def delete_data():
-    return render_template('delete_data.html')
+    data = request.args.get('date')
+    data = data.split()
+    ano = data[0].replace('datetime.date', '').replace('(', '').replace(',', '')
+    mes = data[1].replace(',', '')
+    dia = data[2].replace(')', '').replace(',', '')
+
+    # Valor que irá aparecer na bolinha vermelha
+    dia_swiper = dia
+    if len(mes) < 1:
+        mes = f'0{mes}'
+
+    if len(dia) < 2:
+        dia = f'0{dia}'
+
+    # Valor que será salvo no atributo key
+    date_key = f'{ano}-{mes}-{dia}'
+    return render_template('delete_data.html', date_key=date_key, dia_swiper=dia_swiper)
 
 
 @app.route("/del-dia", methods=["POST"])
 def del_dia():
+    data = request.args.get('date')
+    data = datetime.datetime.strptime(data, "%Y-%m-%d").date()
+    print(data)
+
     senha = request.form['senha']
-    if senha == codigo:
+    with app.app_context():
+        codigo = Code.query.first()
+    if senha == codigo.password:
+        db.session.query(Data).filter_by(date=data).delete()
+        db.session.commit()
         return render_template("delete_data.html", success="Dia deletado com sucesso.")
     return render_template("delete_data.html", error="Código de segurança errado.")
 

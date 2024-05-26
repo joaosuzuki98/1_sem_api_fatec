@@ -2,6 +2,8 @@ const overviewRandom = (arrayP) => {
     arrayP.forEach(p => p.innerText = Math.floor(Math.random() * 100));
 }
 
+const dayShape = document.querySelectorAll('.day-shape');
+
 // Objeto para configuração do swiper
 const swiper = new Swiper(".swiper", {
     effect: "coverflow",
@@ -15,7 +17,7 @@ const swiper = new Swiper(".swiper", {
     },
     slidesPerView: 3,
     spaceBetween: 30,
-    initialSlide: 0,
+    initialSlide: dayShape.length - 10,
     navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
@@ -25,6 +27,7 @@ const swiper = new Swiper(".swiper", {
 const swiperEle = document.querySelector('.swiper').swiper;
 const slideLinks = document.querySelectorAll('.slide-link');
 const overviewText = document.querySelectorAll('.overview-text');
+const removeBtn = document.getElementById('remove-btn');
 
 overviewRandom(overviewText);
 
@@ -45,16 +48,35 @@ swiperEle.on('slideChange', function () {
 
         slideLinks.forEach(link => link.removeAttribute('href'));
     }
+
     const activeSliderShape = slides[activeSlide + 1].querySelector('.day-shape');
     activeSliderShape.classList.add('swiper-link');
     activeSliderShape.classList.remove('swiper-no-pointer');
 
+    
+    const dateKey = slideLinks[activeSlide + 1].getAttribute('key');
+    removeBtn.setAttribute('href', `/delete-data?date=${dateKey}`)
+
     slideLinks[activeSlide + 1].setAttribute('href', '/show-data');
     overviewRandom(overviewText);
+
+    // Setando o valor do mês, aqui está sendo pagado o valor do key e com ele cortamos apenas o mês
+    const slideMonth = String(slideLinks[activeSlide + 1].getAttribute('key')).slice(21, 23).replace(',', '');
+    var monthNames = [
+        "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+        "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+    ];
+    document.getElementById('mes-timelapse').textContent = monthNames[Number(slideMonth) - 1];
+
+    // Aqui esta sendo feito de forma parecida com o acima
+    const slideYear = String(slideLinks[activeSlide + 1].getAttribute('key')).slice(15, 19).replace(',', '');
+    document.getElementById('ano-timelapse').textContent = slideYear;
 });
 
 // Animação inicial do slide
-swiperEle.slideTo(10, 1000);
+setTimeout(() => {
+    swiperEle.slideTo(dayShape.length - 1, 1000)
+}, 100);
 
 // sincronização da pesquisa da barra de data com o timelapse
 const searchBar = document.getElementById('searchBar');
@@ -62,34 +84,20 @@ const searchBar = document.getElementById('searchBar');
 searchBar.addEventListener('submit', function (e) {
     e.preventDefault();
     var selectedDate = document.getElementById('birthday').value.split("-");
-    var selectedDay = parseInt(Number(selectedDate[2]), 10);
-    selectedDay = String(selectedDay);
+    // Esta flag é necessária senão o alert sempre irá disparar
+    var dayFound = false;
 
-    swiperEle.slides.forEach((slide, index) => {
-        if (selectedDay === slide.textContent.trim()) {
-            swiperEle.slideTo(index - 1, 1000);
+    // Aqui cada chave do slide é checado com o valor enviado na barra de pesquisa de dia
+    slideLinks.forEach((slide, index) => {
+        const slideKey = slide.getAttribute('key').split(",");
+        // Cada índice do selectedDate é um valor enviado na barra de pesquisa
+        // 0 = ano, 1 = mês e 2 = dia
+        // O slideKey segue esta mesma lógica, porém como ele vem com uma formatação estranha,
+        // é necessária remover espaços e outros caracteres, por isso o uso de trim e replace
+        if (slideKey[0].slice(15, 19) === selectedDate[0] && slideKey[1].trim() == selectedDate[1] && slideKey[2].trim().replace(')', '') == parseInt(selectedDate[2])) {
+            dayFound = true;
+            return swiperEle.slideTo(index - 1, 2500);
         }
     })
+    if (!dayFound) alert('Dia não registrado');
 });
-
-function updateMonthAndYear() {
-    var selectedDate = document.getElementById('birthday').value;
-    var dateObj = new Date(selectedDate);
-    var monthIndex = dateObj.getMonth();
-    var monthNames = [
-        "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-        "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
-    ];
-    var monthName = monthNames[monthIndex];
-    document.getElementById('mes-timelapse').textContent = monthName;
-    document.getElementById('ano-timelapse').textContent = dateObj.getFullYear();
-}
-
-// Adiciona um evento para chamar a função updateMonthAndYear() quando a data é selecionada
-document.getElementById('birthday').addEventListener('change', updateMonthAndYear);
-
-// Chama a função updateMonthAndYear() para definir o mês e o ano inicialmente
-
-// TODO -> Comentado porque está dando um erro, como o formulário não manda nenhum
-// valor ao carregar a página, ele pega nenhum valor :/
-// updateMonthAndYear();
