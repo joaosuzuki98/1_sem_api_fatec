@@ -27,6 +27,7 @@ const swiper = new Swiper(".swiper", {
 const swiperEle = document.querySelector('.swiper').swiper;
 const slideLinks = document.querySelectorAll('.slide-link');
 const overviewText = document.querySelectorAll('.overview-text');
+const removeBtn = document.getElementById('remove-btn');
 
 overviewRandom(overviewText);
 
@@ -51,6 +52,10 @@ swiperEle.on('slideChange', function () {
     const activeSliderShape = slides[activeSlide + 1].querySelector('.day-shape');
     activeSliderShape.classList.add('swiper-link');
     activeSliderShape.classList.remove('swiper-no-pointer');
+
+    
+    const dateKey = slideLinks[activeSlide + 1].getAttribute('key');
+    removeBtn.setAttribute('href', `/delete-data?date=${dateKey}`)
 
     slideLinks[activeSlide + 1].setAttribute('href', '/show-data');
     overviewRandom(overviewText);

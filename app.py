@@ -109,15 +109,37 @@ def add_data():
 
 @app.route("/delete-data")
 def delete_data():
-    return render_template('delete_data.html')
+    data = request.args.get('date')
+    data = data.split()
+    ano = data[0].replace('datetime.date', '').replace('(', '').replace(',', '')
+    mes = data[1].replace(',', '')
+    dia = data[2].replace(')', '').replace(',', '')
+
+    # Valor que irá aparecer na bolinha vermelha
+    dia_swiper = dia
+    if len(mes) < 1:
+        mes = f'0{mes}'
+
+    if len(dia) < 2:
+        dia = f'0{dia}'
+
+    # Valor que será salvo no atributo key
+    date_key = f'{ano}-{mes}-{dia}'
+    return render_template('delete_data.html', date_key=date_key, dia_swiper=dia_swiper)
 
 
 @app.route("/del-dia", methods=["POST"])
 def del_dia():
+    data = request.args.get('date')
+    data = datetime.datetime.strptime(data, "%Y-%m-%d").date()
+    print(data)
+
     senha = request.form['senha']
     with app.app_context():
         codigo = Code.query.first()
     if senha == codigo.password:
+        db.session.query(Data).filter_by(date=data).delete()
+        db.session.commit()
         return render_template("delete_data.html", success="Dia deletado com sucesso.")
     return render_template("delete_data.html", error="Código de segurança errado.")
 
