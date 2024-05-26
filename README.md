@@ -29,7 +29,8 @@ GitHub / Flask / Html / Css / JavaScript / MySQL / Figma / Jira
     
 ## MVP
 
-<video src="./docs/Sprint-3/mvp-sprint-3.mp4"></video>
+<img src="./docs/Sprint-3/mvp-sprint-3.gif">
+
 
 ## Sprints
 
