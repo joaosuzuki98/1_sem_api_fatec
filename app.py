@@ -7,7 +7,6 @@ import variables
 from datetime import datetime , timedelta
 from collections import defaultdict
 app = Flask(__name__)
-codigo = 'c0d1g0'
 ALLOWED_EXTENSIONS = {'xlsx'}
 hjdia='12'
 hjmes='09'
@@ -31,6 +30,11 @@ class Data(db.Model):
     ambient_temperature = db.Column(db.Float, nullable=False)
     water_volume = db.Column(db.Float, nullable=False)
 
+# tabela para armazenar a senha
+class Code(db.Model): 
+    id = db.Column(db.Integer, primary_key=True)
+    password = db.Column(db.String, nullable=False)
+
 
 with app.app_context():
     db.create_all()
@@ -49,23 +53,24 @@ def index():
 
 @app.route("/trocar", methods=["POST"])
 def trocar():
-    global codigo
-    senha = request.form["senha"]
-    senhanv = request.form['senhanv']
+    with app.app_context():
+        codigo = Code.query.first()
+        senha = request.form["senha"]
+        senhanv = request.form['senhanv']
 
-    # Validação dos campos
-    if not senha or not senhanv:
-        return render_template("index.html", error="Por favor, preencha todos os campos.")
+        # Validação dos campos
+        if not senha or not senhanv:
+            return render_template("delete_data.html", error="Por favor, preenocha tods os campos.")
 
-    if codigo == senha:
-        if len(senhanv) < 6:  
-            return render_template("index.html", error="O novo código deve ter pelo menos 6 caracteres.")
+        if codigo.password == senha:
+            if len(senhanv) < 6:  
+                return render_template("delete_data.html", error="O novo código deve ter pelo menos 6 caracteres.")
 
-        # Atualiza o código para o novo código fornecido
-        codigo = senhanv
-        return render_template("index.html", success="Código atualizado com sucesso.")
-
-    return render_template("index.html", error="Senha incorreta.")
+            # Atualiza o código para o novo código fornecido
+            codigo.password = senhanv
+            db.session.commit()
+            return render_template("delete_data.html", success="Código atualizado com sucesso.")
+    return render_template("delete_data.html", error="Senha incorreta.")
 
 
 @app.route("/show-data")
@@ -93,7 +98,9 @@ def delete_data():
 def del_dia():
     senha = request.form['senha']
     data_atual = request.form['deldia']
-    if senha == codigo:
+    with app.app_context():
+        codigo = Code.query.first()
+    if senha == codigo.password:
         data_atual = datetime.strptime(data_atual, "%Y-%m-%d").date() 
         deleted_data = Data.query.filter_by(date=data_atual).delete()
         db.session.commit()
@@ -104,7 +111,7 @@ def del_dia():
     else:
         return render_template("delete_data.html", error="Código de segurança errado.")
 
-
+ 
 @app.route("/statistics", methods=["GET", "POST"])
 def statistics():
     lista = []
