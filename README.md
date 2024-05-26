@@ -29,18 +29,14 @@ GitHub / Flask / Html / Css / JavaScript / MySQL / Figma / Jira
     
 ## MVP
 
-<video controls>
-  <source src="./docs/Sprint-3/mvp-sprint-3.mp4" type="video/mp4">
-</video>
+<video src="./docs/Sprint-3/mvp-sprint-3.mp4"></video>
 
-<img src="./docs/Sprint-3/mvp-sprint-3.mp4">
-
-<span id="sprint">
-    
 ## Sprints
 
 [Sprint 1 →](./docs/Sprint-1/sprint-1.md)
+
 [Sprint 2 →](./docs/Sprint-2/sprint-2.md)
+
 Sprint 3:
 
 | Descrição | Data de início | Responsável | Data de término
