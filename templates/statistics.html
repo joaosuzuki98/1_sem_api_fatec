@@ -1,17 +1,216 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <p>Visualização de gráficos</p>
-    <div id="chart-container">
-        <canvas id="myChart" class="grafico"></canvas>
-        <canvas id="anotherChart" class="grafico"></canvas>
-        <canvas id="evenAnotherChart" class="grafico"></canvas>
-        <canvas id="oneLastChart" class="grafico"></canvas>
+<p>Visualização de gráficos</p>
+<div class="form">
+    
+        <form action="/statistics" id="center" method="post" id="searchForm">
+            <label for="month" id="fitem" class="formitem">Inicio:</label>
+            <input type="date" class="datei formitem" name="data">
+            <label for="month" id="fitem" class="formitem">Final:</label>
+            <input type="date" class="datei formitem" name="dataf">
+            <input type="submit" class="formbtn griditem" value="Pesquisar">
+            
+        </form>
+ 
+    <div class="btn-interval-container">
+        
+
+        <button class="btn-interval " onclick="setDateRange(30)">30 Dias</button>
+        <button class="btn-interval " onclick="setDateRange(15)">15 Dias</button>
+        <button class="btn-interval " onclick="setDateRange(7)">7 Dias</button>
+        <button class="btn-interval " onclick="setDateRange(3)">3 Dias</button>
     </div>
-    <div id='espaçamento'></div>
+   
+</div>
 
-    <a id="download-btn" href>
-        <svg width="24" heigh="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M17 9.00195C19.175 9.01406 20.3529 9.11051 21.1213 9.8789C22 10.7576 22 12.1718 22 15.0002V16.0002C22 18.8286 22 20.2429 21.1213 21.1215C20.2426 22.0002 18.8284 22.0002 16 22.0002H8C5.17157 22.0002 3.75736 22.0002 2.87868 21.1215C2 20.2429 2 18.8286 2 16.0002L2 15.0002C2 12.1718 2 10.7576 2.87868 9.87889C3.64706 9.11051 4.82497 9.01406 7 9.00195" stroke="#efefef" stroke-width="1.5" stroke-linecap="round"></path> <path d="M12 2L12 15M12 15L9 11.5M12 15L15 11.5" stroke="#efefef" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-    </a>
 
+
+<div id="chart-container">
+    <canvas id="myChart" class="grafico"></canvas>
+    <canvas id="anotherChart" class="grafico"></canvas>
+    <canvas id="evenAnotherChart" class="grafico"></canvas>
+    <canvas id="oneLastChart" class="grafico"></canvas>
+</div>
+<div id='espaçamento'></div>
+
+<a id="download-btn" href>
+    <svg width="24" heigh="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M17 9.00195C19.175 9.01406 20.3529 9.11051 21.1213 9.8789C22 10.7576 22 12.1718 22 15.0002V16.0002C22 18.8286 22 20.2429 21.1213 21.1215C20.2426 22.0002 18.8284 22.0002 16 22.0002H8C5.17157 22.0002 3.75736 22.0002 2.87868 21.1215C2 20.2429 2 18.8286 2 16.0002L2 15.0002C2 12.1718 2 10.7576 2.87868 9.87889C3.64706 9.11051 4.82497 9.01406 7 9.00195" stroke="#efefef" stroke-width="1.5" stroke-linecap="round"></path> <path d="M12 2L12 15M12 15L9 11.5M12 15L15 11.5" stroke="#efefef" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+</a>
+
+<script>
+    function setDateRange(days) {
+        let today = new Date();
+        let startDate = new Date();
+        startDate.setDate(today.getDate() - days);
+
+        document.querySelector('input[name="data"]').value = startDate.toISOString().split('T')[0];
+        document.querySelector('input[name="dataf"]').value = today.toISOString().split('T')[0];
+    }
+
+    const labels = {
+        dias: {{ lista | safe }}.flat()
+    };
+    const soilHumidityData = {
+        soil_humidity: {{ listasoilh | safe }}.flat()
+    };
+    const ambientHumidityData = {
+        ambient_humidity: {{ listaambienth | safe }}.flat()
+    };
+    const ambientTemperatureData = {
+        ambient_temperature: {{ listaambientt | safe }}.flat()
+    };
+    const waterVolumeData = {
+        water_volume: {{ listawater | safe }}.flat()
+    };
+
+    console.log(soilHumidityData.soil_humidity);
+    console.log(ambientHumidityData.ambient_humidity);
+    console.log(ambientTemperatureData.ambient_temperature);
+    console.log(waterVolumeData.water_volume);
+    console.log(labels.dias);
+
+    var myChart = new Chart(
+        document.getElementById('myChart'), {
+            type: 'line',
+            data: {
+                labels: labels.dias,
+                datasets: [{
+                    label: 'Umidade (%)',
+                    data: ambientHumidityData.ambient_humidity,
+                    color: '#FFF',
+                    borderColor: 'rgba(30, 42, 123, 0.8)',
+                    backgroundColor: 'rgba(23, 27, 54, 0.95)',
+                    fill: true
+                }]
+            },
+            options: {
+               
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#292929'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: '#292929'
+                        }
+                    }
+                }
+            }
+        }
+    );
+
+    var anotherChart = new Chart(
+        document.getElementById('anotherChart'), {
+            type: 'line',
+            data: {
+                labels: labels.dias,
+                datasets: [{
+                    label: 'Umidade do Solo (%)',
+                    data: soilHumidityData.soil_humidity,
+                    borderColor: 'green',
+                    backgroundColor: 'rgba(11, 118, 36, 0.8)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#292929'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: '#292929'
+                        }
+                    }
+                }
+            }
+        }
+    );
+
+    var evenAnotherChart = new Chart(
+        document.getElementById('evenAnotherChart'), {
+            type: 'line',
+            backgroundColor: 'white',
+            
+            data: {
+                labels: labels.dias,
+                datasets: [{
+                    label: 'Volume da Água (Ml)',
+                    data: waterVolumeData.water_volume,
+                    borderColor: 'orange',
+                    backgroundColor: 'rgba(255, 165, 0, 0.8)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#292929'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: '#292929'
+                        }
+                    }
+                }
+            }
+        }
+    );
+
+    var oneLastChart = new Chart(
+        document.getElementById('oneLastChart'), {
+            type: 'line',
+            data: {
+                labels: labels.dias,
+                datasets: [{
+                    label: 'Temperatura Ambiente (°C)',
+                    data: ambientTemperatureData.ambient_temperature,
+                    borderColor: 'purple',
+                    backgroundColor: 'rgba(128, 0, 128, 0.8)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#292929'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: '#292929'
+                        }
+                    }
+                },
+                plugins: {
+                legend: {
+                    labels: {
+                        color: 'white'
+                    }
+                }
+                }
+            }
+        }
+    );
+</script>
 {% endblock %}

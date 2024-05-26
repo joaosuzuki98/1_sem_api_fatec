@@ -96,3 +96,20 @@ searchBar.addEventListener('submit', function (e) {
     })
     if (!dayFound) alert('Dia não registrado');
 });
+const dia = document.getElementById('dia'
+)
+let data ={}
+    dia.onclick=function(){
+    let data = {variable: dia};  // Replace with your data
+    }
+
+
+ 
+fetch('/show-data', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+}).then(response => response.json())
+  .then(data => console.log(data));
