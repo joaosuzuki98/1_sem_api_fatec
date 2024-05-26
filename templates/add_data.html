@@ -2,22 +2,27 @@
 
 {% block content %}
     <p>Selecione o arquivo Excel: <p>
-    <form action="/upload" method="post" enctype="multipart/form-data">
+    <form action="/upload" method="post" enctype="multipart/form-data" id="form-add-data">
         <input style=" margin: 3%;"  type="file" name="file" accept="xlsx">
         <input style=" margin: 3%;" type="submit" value="Enviar 📂">
     </form>
-    <p style="color: greenyellow; width: 80%;">Dados Não-Submetidas graças a erros: <p>
-    <div id="table-container"></div>
 
+    <p style="color: greenyellow;">
+        {{ sucess }}
+    </p>
+    <!--
+        <p style="color: greenyellow; width: 80%;">Dados Não-Submetidas graças a erros: <p>
+        <div id="table-container"></div>
+    -->
+    <div id="eu-te-odeio-watermark"><div>
+    <div class="watermark">Desenvolvido por Bugbusters.</div>
+<!--
     <script>
         const tableHTML = document.getElementById('table-container');
         tableHTML.innerHTML = "{{ table_html }}";
         const tableElement = document.getElementById('table-container');
         const tableText = tableElement.textContent;
         document.getElementById('table-container').innerHTML = tableText;
-    </script>
-
-<div class=watermark>Desenvolvido por Bugbusters.</div>
-
+    </script> -->
 {% endblock %}
 

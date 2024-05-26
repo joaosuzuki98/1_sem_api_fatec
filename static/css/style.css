@@ -313,6 +313,10 @@ input[type="submit"]:hover {
   width: 80%;
 }
 
+#eu-te-odeio-watermark {
+  margin-top: 50%;
+}
+
 #searchBar form {
   display: flex;
   align-items: center;
@@ -394,7 +398,8 @@ input[type="submit"]:hover {
 }
 
 #mudcod {
-  margin-top: 6%;
+  margin-top: 40px;
+  margin-bottom: 30px;
   color: var(--secondary-black-color);
   text-decoration: none;
 }
@@ -435,6 +440,14 @@ input[type="submit"]:hover {
   width: 470px;
   margin: 3%;
 }
+
+#form-add-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+}
+
 .formitem {
   width: 400px;
   margin: 1.3% auto;
@@ -532,6 +545,10 @@ input[type="submit"]:hover {
   body {
     padding-bottom: 5px;
   }
+
+  #eu-te-odeio-watermark {
+    margin-top: 9%;
+  }
 }
 
 @media screen and (max-width: 410px) {
@@ -626,20 +643,14 @@ input[type="submit"]:hover {
 }
 @media screen and (max-width: 700px) {
   #download-btn {
-    bottom: -1610px;
+    bottom: -1800px;
   }
 }
 .watermark {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px;
-  background-color: #181818;
-  text-align: center;
+  margin-top: 30px;
+  padding: 20px 0;
   font-size: 10px;
   color: #5f5f5f;
-  z-index: 1000;
 }
 
 @media screen and (max-width: 700px) {
