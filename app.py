@@ -39,10 +39,6 @@ with app.app_context():
 @app.route("/")
 def index():
     overview_list = zip(variables.svg_overview_list, variables.overview_desc)
-    
-
-    # Retornar os dados para o template do Chart.js
-
     mes = datetime.now().strftime('%h')
     return render_template('index.html', overview_list=overview_list, mes=mes)
 
