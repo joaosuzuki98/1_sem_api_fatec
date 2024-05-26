@@ -100,7 +100,6 @@ def show_data():
     if len(dia) < 2:
         dia = f'0{dia}'
 
-    print(f'{ano}-{mes}-{dia}')
     all_dates = Data.query.filter_by(date=f'{ano}-{mes}-{dia}').all()
     return render_template('show_data.html', all_dates=all_dates)
 
