@@ -54,13 +54,10 @@
     {% block content %}
     {% endblock %}
 
-    {% if request.path != '/statistics' %}
-        <footer>
-            <p>
-                Desenvolvido por Bugbusters.
-            </p>
-        </footer>
-    {% endif %}
+    <!-- {% if request.path != '/statistics' or request.path == '/' %}    
+    <div class=watermark>Desenvolvido por Bugbusters.</div>
+    {% endif %} -->
+    
     <!-- Overview.js -->
     <script src={{ url_for('static', filename='js/overview.js') }}></script>
 
