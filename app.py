@@ -138,7 +138,7 @@ def delete_data():
 @app.route("/del-dia", methods=["POST"])
 def del_dia():
     data = request.args.get('date')
-    data = datetime.datetime.strptime(data, "%Y-%m-%d").date()
+    data = datetime.strptime(data, "%Y-%m-%d").date()
     print(data)
 
     senha = request.form['senha']
@@ -269,6 +269,4 @@ def upload():
                         table_html += f"<td style='color: black'>{cell.value}</td>"
                     table_html += "</tr>"
         db.session.commit()
-        return render_template("add_data.html", table_html=table_html)
-
-app.run(debug=True, host= '192.168.1.71')
+        return render_template("add_data.html", sucess="Os dados foram enviados com sucesso")
