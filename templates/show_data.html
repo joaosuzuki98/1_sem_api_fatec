@@ -1,7 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <p>
-        Visualize os dados
-    </p>
+<table class="custom-table">
+    <tr>
+        <th class="table-header">Hora</th>
+        <th class="table-header">Umidade do Solo</th>
+        <th class="table-header">Umidade do Ambiente</th>
+        <th class="table-header">Temperatura do Ambiente</th>
+        <th class="table-header">Volume de Água</th>
+    </tr>
+    {% for date in all_dates %}
+    <tr class="table-row">
+        <td class="table-data">{{ date.time }}</td>
+        <td class="table-data">{{ date.soil_humidity }}</td>
+        <td class="table-data">{{ date.ambient_humidity }}</td>
+        <td class="table-data">{{ date.ambient_temperature }}</td>
+        <td class="table-data">{{ date.water_volume }}</td>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock %}

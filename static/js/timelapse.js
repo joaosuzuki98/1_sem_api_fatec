@@ -52,7 +52,8 @@ swiperEle.on('slideChange', function () {
     activeSliderShape.classList.add('swiper-link');
     activeSliderShape.classList.remove('swiper-no-pointer');
 
-    slideLinks[activeSlide + 1].setAttribute('href', '/show-data');
+    const keySliderShape = activeSliderShape.getAttribute('key');
+    slideLinks[activeSlide + 1].setAttribute('href', `/show-data?date=${keySliderShape}`);
     overviewRandom(overviewText);
 
     // Setando o valor do mês, aqui está sendo pagado o valor do key e com ele cortamos apenas o mês
