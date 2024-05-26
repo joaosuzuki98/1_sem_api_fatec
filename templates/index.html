@@ -12,28 +12,28 @@
   </div>
   
   <!-- Timelapse -->
-  <p id="mes-timelapse">
-  </p>
-  <div class="swiper">
-      <div class="swiper-wrapper">
-      {% for i, data in datas|enumerate %}
-        <div class="swiper-slide">
-          <div class="day-shape">
-            <!--Utilize esta chave para poder pegar o dia em 
-            que a bolinha atualmente está usando o swiper.js -->
-            <a class="slide-link" key="{{ datas[i] }}">
-                <p>{{ data[0].day }}</p>
-              </a>
-          </div>
-        </div>
-      {% endfor %}
-      </div>
 
-      <div class="swiper-button-prev next-btn"></div>
-      <div class="swiper-button-next next-btn"></div>
-    </div>
-    <p id="ano-timelapse">
+
+    <p id="mes-timelapse">
     </p>
+    <div class="swiper">
+        <div class="swiper-wrapper">
+          {% for i, data in datas|enumerate %}
+            <div class="swiper-slide">
+            <div class="day-shape" key="{{ datas[i] }}">
+                <a class="slide-link" key="{{ datas[i] }}">
+                    <p>{{ data[0].day }}</p>
+                  </a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+  
+        <div class="swiper-button-prev next-btn"></div>
+        <div class="swiper-button-next next-btn"></div>
+      </div>
+      <p id="ano-timelapse">
+      </p>
 
     <h2 id="overview-title">Média diária</h2>
     <div class="overview">

@@ -88,7 +88,21 @@ def trocar():
 
 @app.route("/show-data")
 def show_data():
-    return render_template('show_data.html')
+    data = request.args.get('date')
+    data = data.split()
+    ano = data[0].replace('datetime.date', '').replace('(', '').replace(',', '')
+    mes = data[1].replace(',', '')
+    dia = data[2].replace(')', '').replace(',', '')
+
+    if len(mes) < 1:
+        mes = f'0{mes}'
+
+    if len(dia) < 2:
+        dia = f'0{dia}'
+
+    print(f'{ano}-{mes}-{dia}')
+    all_dates = Data.query.filter_by(date=f'{ano}-{mes}-{dia}').all()
+    return render_template('show_data.html', all_dates=all_dates)
 
 
 @app.route("/add-data")
