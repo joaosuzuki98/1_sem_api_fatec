@@ -1,14 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<div class="day-shape">
+<p class="day-font" key={{ date_key }}>{{ dia_swiper }}</p>
+</div>
+<br>
+<br>
 <table class="custom-table">
-    <tr>
-        <th class="table-header">Hora</th>
-        <th class="table-header">Umidade do Solo</th>
-        <th class="table-header">Umidade do Ambiente</th>
-        <th class="table-header">Temperatura do Ambiente</th>
-        <th class="table-header">Volume de Água</th>
+    <tr class="table-header">
+        <th>Hora</th>
+        <th>Umidade do Solo</th>
+        <th>Umidade do Ambiente</th>
+        <th>Temperatura do Ambiente</th>
+        <th>Volume de Água</th>
     </tr>
     {% for date in all_dates %}
     <tr class="table-row">
