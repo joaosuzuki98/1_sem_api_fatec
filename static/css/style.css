@@ -55,6 +55,10 @@ td {
   text-align: center;
 }
 
+.hidden {
+  display: none;
+}
+
 .swiper {
   width: 100vw;
   height: 146px;

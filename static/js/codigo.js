@@ -69,3 +69,8 @@ function showMessage(message, type) {
         messageCard.classList.add('hidden');
     }, 5000);
 }
+
+
+function closeModal(modalId) {
+    document.getElementById(modalId).classList.add('hidden');
+}
