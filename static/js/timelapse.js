@@ -74,7 +74,7 @@ swiperEle.on('slideChange', function () {
 
 // Animação inicial do slide
 setTimeout(() => {
-    swiperEle.slideTo(dayShape.length - 1, 1000)
+    swiperEle.slideTo(dayShape.length - 2, 1000)
 }, 100);
 
 // sincronização da pesquisa da barra de data com o timelapse
