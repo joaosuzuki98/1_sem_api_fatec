@@ -16,6 +16,15 @@
   </p>
   <div class="swiper">
       <div class="swiper-wrapper">
+        <!-- swiper vazio para poder selecionar o primeiro dia-->
+        <div class="swiper-slide" style="opacity: 0;">
+          <div class="day-shape">
+            <a class="slide-link" key="{{ datas[i] }}">
+                <p>no value</p>
+              </a>
+          </div>
+        </div>
+        
         {% for i, data in datas|enumerate %}
           <div class="swiper-slide">
             <div class="day-shape">
@@ -25,6 +34,15 @@
             </div>
           </div>
         {% endfor %}
+
+        <!-- swiper vazio para poder selecionar o último dia-->
+        <div class="swiper-slide" style="opacity: 0;">
+          <div class="day-shape">
+            <a class="slide-link" key="{{ datas[i] }}">
+                <p>no value</p>
+              </a>
+          </div>
+        </div>
       </div>
 
       <div class="swiper-button-prev next-btn"></div>
