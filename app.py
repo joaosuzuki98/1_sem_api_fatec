@@ -154,6 +154,7 @@ def del_dia():
 @app.route("/statistics", methods=["GET", "POST"])
 def statistics():
     lista = []
+    msg=''
     if request.method == "POST":
         interval = request.form.get("interval")
         if interval:
@@ -190,11 +191,12 @@ def statistics():
         try:
             dia = datetime.strptime(date_str, '%Y-%m-%d').date()
         except ValueError:
-            return jsonify({"error": "Invalid date format. Use YYYY-MM-DD."}), 400
+            msg = "Data inválida"
     
         dados_por_dia = db.session.query(Data).filter_by(date=dia).all()
         if not dados_por_dia:
-            return jsonify({"message": f"No data found for {dia}."})
+            msg = "Não há dados para a data selecionada"
+            return render_template('statistics.html', msg=msg)
 
         # Dicionário para armazenar somas e contagens por atributo
         soma_por_atributo = defaultdict(float)
@@ -234,7 +236,7 @@ def statistics():
                            listasoilh=listasoilh,
                            listaambienth=listaambienth,
                            listaambientt=listaambientt,
-                           listawater=listawater,  lista=lista)
+                           listawater=listawater,  lista=lista, msg=msg)
 
 
 @app.route("/upload", methods=["POST"])

@@ -515,7 +515,10 @@ input[type="submit"]:hover {
   text-align: center;
   color: black;
 }
-
+#error{
+  color: #ef3e36;
+  
+}
 @media screen and (min-width: 910px) {
   .swiper {
     width: 60vw;
