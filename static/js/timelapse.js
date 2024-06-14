@@ -85,7 +85,10 @@ searchBar.addEventListener('submit', function (e) {
     var selectedDate = document.getElementById('birthday').value.split("-");
     // Esta flag é necessária senão o alert sempre irá disparar
     var dayFound = false;
-
+    if (selectedDate[1].startsWith('0')) {
+        // Remove o zero à esquerda
+    selectedDate[1] = selectedDate[1].substring(1);
+    }
     // Aqui cada chave do slide é checado com o valor enviado na barra de pesquisa de dia
     slideLinks.forEach((slide, index) => {
         const slideKey = slide.getAttribute('key').split(",");
