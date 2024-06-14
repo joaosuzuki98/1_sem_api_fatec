@@ -154,12 +154,16 @@ def del_dia():
 @app.route("/statistics", methods=["GET", "POST"])
 def statistics():
     lista = []
-    msg=''
+    msg = ''
+
+    # Obter todas as datas disponíveis no banco de dados
+    available_dates = [str(date[0]) for date in db.session.query(distinct(Data.date)).all()]
+
     if request.method == "POST":
         interval = request.form.get("interval")
         if interval:
             interval = int(interval)
-            end_date = datetime.now()
+            end_date = datetime.strptime(available_dates[-1], '%Y-%m-%d')
             start_date = end_date - timedelta(days=interval)
             lista = [(start_date + timedelta(days=i)).strftime('%Y-%m-%d') for i in range((end_date - start_date).days + 1)]
         else:
@@ -196,13 +200,13 @@ def statistics():
         dados_por_dia = db.session.query(Data).filter_by(date=dia).all()
         if not dados_por_dia:
             msg = "Não há dados para a data selecionada"
-            return render_template('statistics.html', msg=msg)
+            return render_template('statistics.html', msg=msg, available_dates=available_dates)
 
         # Dicionário para armazenar somas e contagens por atributo
         soma_por_atributo = defaultdict(float)
         contagem_por_atributo = defaultdict(int)
 
-      # Calcular a soma e contagem para cada atributo
+        # Calcular a soma e contagem para cada atributo
         for data in dados_por_dia:  
             soma_por_atributo["soil_humidity"] += round(data.soil_humidity, 2)
             soma_por_atributo["ambient_humidity"] += round(data.ambient_humidity, 2)
@@ -226,17 +230,14 @@ def statistics():
     print("Lista Water Volume:", listawater)
     print(lista)
    
-
-    # Agora você tem um dicionário onde as chaves são as datas e os valores são dicionários contendo as médias de cada atributo para cada dia
-
-    # Exibir o dicionário (opcional)
-    
-
     return render_template('statistics.html', 
                            listasoilh=listasoilh,
                            listaambienth=listaambienth,
                            listaambientt=listaambientt,
-                           listawater=listawater,  lista=lista, msg=msg)
+                           listawater=listawater,
+                           lista=lista,
+                           msg=msg,
+                           available_dates=available_dates)
 
 
 @app.route("/upload", methods=["POST"])

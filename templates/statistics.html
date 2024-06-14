@@ -39,13 +39,20 @@
 </a>
 
 <script>
+    const availableDates = {{ available_dates | safe }};
+    
     function setDateRange(days) {
-        let today = new Date();
-        let startDate = new Date();
-        startDate.setDate(today.getDate() - days);
+        let endDate = new Date(availableDates[availableDates.length - 1]);
+        let startDate = new Date(endDate);
+        startDate.setDate(startDate.getDate() - days);
 
-        document.querySelector('input[name="data"]').value = startDate.toISOString().split('T')[0];
-        document.querySelector('input[name="dataf"]').value = today.toISOString().split('T')[0];
+        let filteredDates = availableDates.filter(date => {
+            let current = new Date(date);
+            return current >= startDate && current <= endDate;
+        });
+
+        document.querySelector('input[name="data"]').value = filteredDates[0];
+        document.querySelector('input[name="dataf"]').value = filteredDates[filteredDates.length - 1];
     }
 
     const labels = {
