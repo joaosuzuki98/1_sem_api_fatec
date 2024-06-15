@@ -79,7 +79,7 @@ def trocar():
 
         # Validação dos campos
         if not senha or not senhanv:
-            return redirect(url_for("delete_data", error="Por favor, preenocha tods os campos."))
+            return redirect(url_for("delete_data", error="Por favor, preencha todos os campos."))
 
         if codigo.password == senha:
             if len(senhanv) < 6:  
