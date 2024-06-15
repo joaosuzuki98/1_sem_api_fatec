@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify, flash
 import os
 from openpyxl import load_workbook
 from werkzeug.utils import secure_filename
@@ -13,6 +13,7 @@ ALLOWED_EXTENSIONS = {'xlsx'}
 hjdia='12'
 hjmes='09'
 hjano='2023'
+app.secret_key = 'secret-key'
 
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in \
@@ -263,9 +264,9 @@ def statistics():
 
 
 @app.route("/upload", methods=["POST"])
+@app.route("/upload", methods=["POST"])
 def upload():
     if request.method == "POST":
-        table_html = "<table>"
         file = request.files["file"]
         if not os.path.exists('./uploads'):
             os.mkdir('./uploads')
@@ -276,7 +277,6 @@ def upload():
 
             wb = load_workbook(os.path.join("uploads", filename))
             sheet = wb.active
-            table_html = "<table>"
             for row in range(1, sheet.max_row + 1):
                 try:
                     info = Data()
@@ -288,10 +288,10 @@ def upload():
                     info.water_volume = sheet.cell(row=row, column=7).value
                     db.session.add(info)
                 except:
-                    table_html += "<tr>"
-                    for col in range(2, 7):
-                        cell = sheet.cell(row=row, column=col)
-                        table_html += f"<td style='color: black'>{cell.value}</td>"
-                    table_html += "</tr>"
-        db.session.commit()
-        return render_template("add_data.html", sucess="Os dados foram enviados com sucesso")
+                    continue
+            db.session.commit()
+            flash("Os dados foram enviados com sucesso", "success")
+        else:
+            flash("Arquivo inválido", "error")
+
+        return redirect(url_for('add_data'))

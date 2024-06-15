@@ -7,9 +7,15 @@
         <input style=" margin: 3%;" type="submit" value="Enviar 📂">
     </form>
 
-    <p style="color: greenyellow;">
-        {{ sucess }}
-    </p>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p style="color: {{ 'red' if category == 'error' else 'greenyellow' }};">
+                    {{ message }}
+                </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <!--
         <p style="color: greenyellow; width: 80%;">Dados Não-Submetidas graças a erros: <p>
         <div id="table-container"></div>
