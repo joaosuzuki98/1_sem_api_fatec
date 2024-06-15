@@ -78,17 +78,17 @@ def trocar():
 
         # Validação dos campos
         if not senha or not senhanv:
-            return render_template("delete_data.html", error="Por favor, preenocha tods os campos.")
+            return redirect(url_for("delete_data", error="Por favor, preenocha tods os campos."))
 
         if codigo.password == senha:
             if len(senhanv) < 6:  
-                return render_template("delete_data.html", error="O novo código deve ter pelo menos 6 caracteres.")
+                return redirect(url_for("delete_data", error="O novo código deve ter pelo menos 6 caracteres."))
 
             # Atualiza o código para o novo código fornecido
             codigo.password = senhanv
             db.session.commit()
-            return render_template("delete_data.html", success="Código atualizado com sucesso.")
-    return render_template("delete_data.html", error="Senha incorreta.")
+            return redirect(url_for("delete_data", success="Código atualizado com sucesso."))
+    return redirect(url_for("delete_data", error="Senha incorreta."))
 
 
 @app.route("/show-data")
@@ -117,22 +117,44 @@ def add_data():
 @app.route("/delete-data")
 def delete_data():
     data = request.args.get('date')
-    data = data.split()
-    ano = data[0].replace('datetime.date', '').replace('(', '').replace(',', '')
-    mes = data[1].replace(',', '')
-    dia = data[2].replace(')', '').replace(',', '')
+    if data:
+        data = data.split()
+        ano = data[0].replace('datetime.date', '').replace('(', '').replace(',', '')
+        mes = data[1].replace(',', '')
+        dia = data[2].replace(')', '').replace(',', '')
 
-    # Valor que irá aparecer na bolinha vermelha
-    dia_swiper = dia
-    if len(mes) < 1:
-        mes = f'0{mes}'
+        # Valor que irá aparecer na bolinha vermelha
+        dia_swiper = dia
+        if len(mes) < 1:
+            mes = f'0{mes}'
 
-    if len(dia) < 2:
-        dia = f'0{dia}'
+        if len(dia) < 2:
+            dia = f'0{dia}'
+        # Valor que será salvo no atributo key   
+        date_key = f'{ano}-{mes}-{dia}'
+    else:
+        date_key = 'no value'
+        dia_swiper = 'x'
 
-    # Valor que será salvo no atributo key
-    date_key = f'{ano}-{mes}-{dia}'
-    return render_template('delete_data.html', date_key=date_key, dia_swiper=dia_swiper)
+    error_msg = request.args.get('error')
+    if error_msg:
+        error = error_msg
+    else: error = ''
+
+    success_msg = request.args.get('success')
+    if success_msg:
+        success = success_msg
+    else: success = ''
+
+    # Função que coloca a chave padrão no DB se ele estiver vazio
+    with app.app_context():
+        empty_check = Code.query.count()
+        if empty_check == 0:
+            start_pwrd = Code(id=1, password='c0d1g0')
+            db.session.add(start_pwrd)
+            db.session.commit()
+
+    return render_template('delete_data.html', date_key=date_key, dia_swiper=dia_swiper, success=success, error=error)
 
 
 @app.route("/del-dia", methods=["POST"])
