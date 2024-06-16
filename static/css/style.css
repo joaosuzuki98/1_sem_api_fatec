@@ -460,7 +460,7 @@ input[type="submit"]:hover {
 .btn-interval {
   width: 130px;
   background-color: var(--main-green-color);
-  border-radius: 50px;
+  border-radius: 10px;
   color: var(--white-color);
   border: none;
   height: 40px;
