@@ -214,7 +214,7 @@ td {
   background-color: var(--blue-color);
   display: flex;
   position: absolute;
-  bottom: -160%;
+  bottom: -200%;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
@@ -634,7 +634,6 @@ input[type="submit"]:hover {
     bottom: -1610px;
     margin: 3% auto;
     align-items: center;
-    align-items: center;
     align-content: center;
   }
   body {
@@ -643,7 +642,7 @@ input[type="submit"]:hover {
 }
 @media screen and (max-width: 700px) {
   #download-btn {
-    bottom: -1800px;
+    bottom: -1900px;
   }
 }
 .watermark {
