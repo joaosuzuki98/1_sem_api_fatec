@@ -227,7 +227,7 @@ td {
   background-color: var(--blue-color);
   display: flex;
   position: absolute;
-  bottom: -160%;
+  bottom: -200%;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
@@ -463,21 +463,17 @@ input[type="submit"]:hover {
 
 .formitem {
   width: 400px;
-  margin: 1.3% auto;
-  justify-content: center;
+  margin: 1% 10%;
+
 }
-#fitem {
-  width: 100%;
-  margin: 0 2%;
-}
+
 .formbtn {
-  margin: auto;
-  margin: 3% auto;
+  margin: 4% auto;
 }
 .btn-interval {
   width: 130px;
   background-color: var(--main-green-color);
-  border-radius: 50px;
+  border-radius: 10px;
   color: var(--white-color);
   border: none;
   height: 40px;
@@ -529,7 +525,10 @@ input[type="submit"]:hover {
   text-align: center;
   color: black;
 }
-
+#error{
+  color: #ef3e36;
+  
+}
 @media screen and (min-width: 910px) {
   .swiper {
     width: 60vw;
@@ -628,9 +627,11 @@ input[type="submit"]:hover {
 }
 @media screen and (max-width: 600px) {
   .formitem {
-    width: 80% !important;
-    margin: 2% auto;
-    justify-content: center;
+    .formitem {
+      width: 400px;
+      margin: 1% 8%;
+    
+    }
   }
   .btn-interval-container {
     width: 100% !important;
@@ -639,18 +640,16 @@ input[type="submit"]:hover {
     align-items: center;
     justify-content: center;
   }
-  #fitem {
-    margin: 5% 2.5%;
-    width: 100% !important;
-  }
+  
   #center {
     width: 70%;
-    margin: 2% auto 2% 20%;
+    display: flex;
+    justify-content: center;
+
   }
   #download-btn {
     bottom: -1610px;
     margin: 3% auto;
-    align-items: center;
     align-items: center;
     align-content: center;
   }
@@ -660,7 +659,7 @@ input[type="submit"]:hover {
 }
 @media screen and (max-width: 700px) {
   #download-btn {
-    bottom: -1800px;
+    bottom: -1900px;
   }
 }
 .watermark {
@@ -676,3 +675,6 @@ input[type="submit"]:hover {
     padding: 10px;
   }
 }
+
+
+

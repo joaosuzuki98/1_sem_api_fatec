@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify, flash
 import os
 from openpyxl import load_workbook
 from werkzeug.utils import secure_filename
@@ -13,6 +13,7 @@ ALLOWED_EXTENSIONS = {'xlsx'}
 hjdia='12'
 hjmes='09'
 hjano='2023'
+app.secret_key = 'secret-key'
 
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in \
@@ -78,17 +79,17 @@ def trocar():
 
         # Validação dos campos
         if not senha or not senhanv:
-            return render_template("delete_data.html", error="Por favor, preenocha tods os campos.")
+            return redirect(url_for("delete_data", error="Por favor, preencha todos os campos."))
 
         if codigo.password == senha:
             if len(senhanv) < 6:  
-                return render_template("delete_data.html", error="O novo código deve ter pelo menos 6 caracteres.")
+                return redirect(url_for("delete_data", error="O novo código deve ter pelo menos 6 caracteres."))
 
             # Atualiza o código para o novo código fornecido
             codigo.password = senhanv
             db.session.commit()
-            return render_template("delete_data.html", success="Código atualizado com sucesso.")
-    return render_template("delete_data.html", error="Senha incorreta.")
+            return redirect(url_for("delete_data", success="Código atualizado com sucesso."))
+    return redirect(url_for("delete_data", error="Senha incorreta."))
 
 
 @app.route("/show-data")
@@ -119,22 +120,44 @@ def add_data():
 @app.route("/delete-data")
 def delete_data():
     data = request.args.get('date')
-    data = data.split()
-    ano = data[0].replace('datetime.date', '').replace('(', '').replace(',', '')
-    mes = data[1].replace(',', '')
-    dia = data[2].replace(')', '').replace(',', '')
+    if data:
+        data = data.split()
+        ano = data[0].replace('datetime.date', '').replace('(', '').replace(',', '')
+        mes = data[1].replace(',', '')
+        dia = data[2].replace(')', '').replace(',', '')
 
-    # Valor que irá aparecer na bolinha vermelha
-    dia_swiper = dia
-    if len(mes) < 2:
-        mes = f'0{mes}'
+        # Valor que irá aparecer na bolinha vermelha
+        dia_swiper = dia
+        if len(mes) < 1:
+            mes = f'0{mes}'
 
-    if len(dia) < 2:
-        dia = f'0{dia}'
+        if len(dia) < 2:
+            dia = f'0{dia}'
+        # Valor que será salvo no atributo key   
+        date_key = f'{ano}-{mes}-{dia}'
+    else:
+        date_key = 'no value'
+        dia_swiper = 'x'
 
-    # Valor que será salvo no atributo key
-    date_key = f'{ano}-{mes}-{dia}'
-    return render_template('delete_data.html', date_key=date_key, dia_swiper=dia_swiper)
+    error_msg = request.args.get('error')
+    if error_msg:
+        error = error_msg
+    else: error = ''
+
+    success_msg = request.args.get('success')
+    if success_msg:
+        success = success_msg
+    else: success = ''
+
+    # Função que coloca a chave padrão no DB se ele estiver vazio
+    with app.app_context():
+        empty_check = Code.query.count()
+        if empty_check == 0:
+            start_pwrd = Code(id=1, password='c0d1g0')
+            db.session.add(start_pwrd)
+            db.session.commit()
+
+    return render_template('delete_data.html', date_key=date_key, dia_swiper=dia_swiper, success=success, error=error)
 
 
 @app.route("/del-dia", methods=["POST"])
@@ -156,11 +179,16 @@ def del_dia():
 @app.route("/statistics", methods=["GET", "POST"])
 def statistics():
     lista = []
+    msg = ''
+
+    # Obter todas as datas disponíveis no banco de dados
+    available_dates = [str(date[0]) for date in db.session.query(distinct(Data.date)).all()]
+
     if request.method == "POST":
         interval = request.form.get("interval")
         if interval:
             interval = int(interval)
-            end_date = datetime.now()
+            end_date = datetime.strptime(available_dates[-1], '%Y-%m-%d')
             start_date = end_date - timedelta(days=interval)
             lista = [(start_date + timedelta(days=i)).strftime('%Y-%m-%d') for i in range((end_date - start_date).days + 1)]
         else:
@@ -192,17 +220,18 @@ def statistics():
         try:
             dia = datetime.strptime(date_str, '%Y-%m-%d').date()
         except ValueError:
-            return jsonify({"error": "Invalid date format. Use YYYY-MM-DD."}), 400
+            msg = "Data inválida"
     
         dados_por_dia = db.session.query(Data).filter_by(date=dia).all()
         if not dados_por_dia:
-            return jsonify({"message": f"No data found for {dia}."})
+            msg = "Não há dados para a data selecionada"
+            return render_template('statistics.html', msg=msg, available_dates=available_dates)
 
         # Dicionário para armazenar somas e contagens por atributo
         soma_por_atributo = defaultdict(float)
         contagem_por_atributo = defaultdict(int)
 
-      # Calcular a soma e contagem para cada atributo
+        # Calcular a soma e contagem para cada atributo
         for data in dados_por_dia:  
             soma_por_atributo["soil_humidity"] += round(data.soil_humidity, 2)
             soma_por_atributo["ambient_humidity"] += round(data.ambient_humidity, 2)
@@ -226,23 +255,20 @@ def statistics():
     print("Lista Water Volume:", listawater)
     print(lista)
    
-
-    # Agora você tem um dicionário onde as chaves são as datas e os valores são dicionários contendo as médias de cada atributo para cada dia
-
-    # Exibir o dicionário (opcional)
-    
-
     return render_template('statistics.html', 
                            listasoilh=listasoilh,
                            listaambienth=listaambienth,
                            listaambientt=listaambientt,
-                           listawater=listawater,  lista=lista)
+                           listawater=listawater,
+                           lista=lista,
+                           msg=msg,
+                           available_dates=available_dates)
 
 
 @app.route("/upload", methods=["POST"])
+@app.route("/upload", methods=["POST"])
 def upload():
     if request.method == "POST":
-        table_html = "<table>"
         file = request.files["file"]
         if not os.path.exists('./uploads'):
             os.mkdir('./uploads')
@@ -253,7 +279,6 @@ def upload():
 
             wb = load_workbook(os.path.join("uploads", filename))
             sheet = wb.active
-            table_html = "<table>"
             for row in range(1, sheet.max_row + 1):
                 try:
                     info = Data()
@@ -265,10 +290,28 @@ def upload():
                     info.water_volume = sheet.cell(row=row, column=7).value
                     db.session.add(info)
                 except:
-                    table_html += "<tr>"
-                    for col in range(2, 7):
-                        cell = sheet.cell(row=row, column=col)
-                        table_html += f"<td style='color: black'>{cell.value}</td>"
-                    table_html += "</tr>"
-        db.session.commit()
-        return render_template("add_data.html", sucess="Os dados foram enviados com sucesso")
+                    continue
+            db.session.commit()
+            flash("Os dados foram enviados com sucesso", "success")
+        else:
+            flash("Arquivo inválido", "error")
+
+        return redirect(url_for('add_data'))
+
+
+@app.route('/get_data')
+def get_data():
+    dia = request.args.get('dia')
+    dados_dia = db.session.query(Data).filter_by(date=dia).all()
+
+    res_dados_dia = [
+        {
+            "soil_humidity": data.soil_humidity,
+            "ambient_humidity": data.ambient_humidity,
+            "ambient_temperature": data.ambient_temperature,
+            "water_volume": data.water_volume
+        }
+        for data in dados_dia
+    ]
+
+    return jsonify(res_dados_dia)

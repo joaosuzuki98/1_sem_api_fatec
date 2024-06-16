@@ -15,13 +15,33 @@
   <p id="mes-timelapse">
   </p>
   <div class="swiper">
-    <div class="swiper-wrapper">
-      {% for i, data in datas|enumerate %}
-      <div class="swiper-slide">
-        <div class="day-shape">
-          <a class="slide-link" key="{{ datas[i] }}">
-            <p>{{ data[0].day }}</p>
-          </a>
+      <div class="swiper-wrapper">
+        <!-- swiper vazio para poder selecionar o primeiro dia-->
+        <div class="swiper-slide" style="opacity: 0;">
+          <div class="day-shape">
+            <a class="slide-link" key="{{ datas[i] }}">
+                <p>no value</p>
+              </a>
+          </div>
+        </div>
+        
+        {% for i, data in datas|enumerate %}
+          <div class="swiper-slide">
+            <div class="day-shape">
+              <a class="slide-link" key="{{ datas[i] }}">
+                  <p>{{ data[0].day }}</p>
+                </a>
+            </div>
+          </div>
+        {% endfor %}
+
+        <!-- swiper vazio para poder selecionar o último dia-->
+        <div class="swiper-slide" style="opacity: 0;">
+          <div class="day-shape">
+            <a class="slide-link" key="{{ datas[i] }}">
+                <p>no value</p>
+              </a>
+          </div>
         </div>
       </div>
       {% endfor %}
