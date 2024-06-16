@@ -1,6 +1,4 @@
-const overviewRandom = (arrayP) => {
-    arrayP.forEach(p => p.innerText = Math.floor(Math.random() * 100));
-}
+import { overviewData } from "./overview.js";
 
 const dayShape = document.querySelectorAll('.day-shape');
 
@@ -26,10 +24,7 @@ const swiper = new Swiper(".swiper", {
 
 const swiperEle = document.querySelector('.swiper').swiper;
 const slideLinks = document.querySelectorAll('.slide-link');
-const overviewText = document.querySelectorAll('.overview-text');
 const removeBtn = document.getElementById('remove-btn');
-
-overviewRandom(overviewText);
 
 // Para que o slide atual fique focado quando a página for carregada
 swiperEle.slides[swiperEle.activeIndex + 1].querySelector('.day-shape').classList.add('swiper-link');
@@ -57,7 +52,7 @@ swiperEle.on('slideChange', function () {
     removeBtn.setAttribute('href', `/delete-data?date=${dateKey}`);
     slideLinks[activeSlide + 1].setAttribute('href', `/show-data?date=${dateKey}`);
 
-    overviewRandom(overviewText);
+    overviewData(dateKey);
 
     // Setando o valor do mês, aqui está sendo pagado o valor do key e com ele cortamos apenas o mês
     const slideMonth = String(slideLinks[activeSlide + 1].getAttribute('key')).slice(21, 23).replace(',', '');
@@ -103,20 +98,3 @@ searchBar.addEventListener('submit', function (e) {
     })
     if (!dayFound) alert('Dia não registrado');
 });
-const dia = document.getElementById('dia'
-)
-let data ={}
-    dia.onclick=function(){
-    let data = {variable: dia};  // Replace with your data
-    }
-
-
- 
-fetch('/show-data', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-}).then(response => response.json())
-  .then(data => console.log(data));

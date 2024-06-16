@@ -295,3 +295,21 @@ def upload():
             flash("Arquivo inválido", "error")
 
         return redirect(url_for('add_data'))
+
+
+@app.route('/get_data')
+def get_data():
+    dia = request.args.get('dia')
+    dados_dia = db.session.query(Data).filter_by(date=dia).all()
+
+    res_dados_dia = [
+        {
+            "soil_humidity": data.soil_humidity,
+            "ambient_humidity": data.ambient_humidity,
+            "ambient_temperature": data.ambient_temperature,
+            "water_volume": data.water_volume
+        }
+        for data in dados_dia
+    ]
+
+    return jsonify(res_dados_dia)
