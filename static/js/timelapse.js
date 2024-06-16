@@ -83,23 +83,27 @@ const searchBar = document.getElementById('searchBar');
 searchBar.addEventListener('submit', function (e) {
     e.preventDefault();
     var selectedDate = document.getElementById('birthday').value.split("-");
-    // Esta flag é necessária senão o alert sempre irá disparar
     var dayFound = false;
 
-    // Aqui cada chave do slide é checado com o valor enviado na barra de pesquisa de dia
     slideLinks.forEach((slide, index) => {
         const slideKey = slide.getAttribute('key').split(",");
-        // Cada índice do selectedDate é um valor enviado na barra de pesquisa
-        // 0 = ano, 1 = mês e 2 = dia
-        // O slideKey segue esta mesma lógica, porém como ele vem com uma formatação estranha,
-        // é necessária remover espaços e outros caracteres, por isso o uso de trim e replace
-        if (slideKey[0].slice(15, 19) === selectedDate[0] && slideKey[1].trim() == selectedDate[1] && slideKey[2].trim().replace(')', '') == parseInt(selectedDate[2])) {
+        const slideYear = slideKey[0].slice(15, 19);
+        const slideMonth = slideKey[1].trim().padStart(2, '0');
+        const slideDay = slideKey[2].trim().replace(')', '').padStart(2, '0');
+
+        const selectedYear = selectedDate[0];
+        const selectedMonth = selectedDate[1].padStart(2, '0');
+        const selectedDay = selectedDate[2].padStart(2, '0');
+
+        if (slideYear === selectedYear && slideMonth === selectedMonth && slideDay === selectedDay) {
             dayFound = true;
             return swiperEle.slideTo(index - 1, 2500);
         }
-    })
+    });
+
     if (!dayFound) alert('Dia não registrado');
 });
+
 const dia = document.getElementById('dia'
 )
 let data ={}

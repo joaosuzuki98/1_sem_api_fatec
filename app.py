@@ -100,7 +100,7 @@ def show_data():
     dia = data[2].replace(')', '').replace(',', '')
 
     dia_swiper = dia
-    if len(mes) < 1:
+    if len(mes) < 2:
         mes = f'0{mes}'
 
     if len(dia) < 2:
@@ -126,7 +126,7 @@ def delete_data():
 
     # Valor que irá aparecer na bolinha vermelha
     dia_swiper = dia
-    if len(mes) < 1:
+    if len(mes) < 2:
         mes = f'0{mes}'
 
     if len(dia) < 2:
