@@ -100,14 +100,17 @@ def show_data():
     mes = data[1].replace(',', '')
     dia = data[2].replace(')', '').replace(',', '')
 
-    if len(mes) < 1:
+    dia_swiper = dia
+    if len(mes) < 2:
         mes = f'0{mes}'
 
     if len(dia) < 2:
         dia = f'0{dia}'
 
+    date_key = f'{ano}-{mes}-{dia}'
+
     all_dates = Data.query.filter_by(date=f'{ano}-{mes}-{dia}').all()
-    return render_template('show_data.html', all_dates=all_dates)
+    return render_template('show_data.html', all_dates=all_dates, date_key=date_key, dia_swiper=dia_swiper)
 
 
 @app.route("/add-data")
