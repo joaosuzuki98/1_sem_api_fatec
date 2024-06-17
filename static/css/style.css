@@ -52,6 +52,11 @@ td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
 }
 
 .swiper {
@@ -74,6 +79,11 @@ td {
   border-radius: 50%;
   margin: 0 auto;
   background-color: var(--secondary-green-color);
+}
+
+.day-font{
+  font-size: 40px;
+  text-align: center;
 }
 
 .swiper-slide p {
@@ -492,10 +502,11 @@ input[type="submit"]:hover {
 .custom-table {
   width: 70%;
   border-collapse: collapse;
+  padding-top: 50%;
 }
 
 .table-header {
-  background-color: #337357;
+  background-color: var(--secondary-green-color);
   border: 1%;
   padding: 0.8%;
   text-align: center;
@@ -596,6 +607,10 @@ input[type="submit"]:hover {
   }
   #download-btn {
     bottom: -210%;
+  }
+
+  .table-header{
+    font-size: small;
   }
 }
 
