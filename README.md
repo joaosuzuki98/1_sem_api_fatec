@@ -29,7 +29,7 @@ GitHub / Flask / Html / Css / JavaScript / MySQL / Figma / Jira
     
 ## MVP
 
-<img src="./docs/Sprint-3/mvp-sprint-3.gif">
+<img src="./docs/Sprint-4/mvp-sprint-4.gif">
 
 
 ## Sprints
@@ -38,24 +38,27 @@ GitHub / Flask / Html / Css / JavaScript / MySQL / Figma / Jira
 
 [Sprint 2 →](./docs/Sprint-2/sprint-2.md)
 
-Sprint 3:
+[Sprint 3 →](./docs/Sprint-3/sprint-3.md)
 
-| Descrição | Data de início | Responsável | Data de término
-|-----------|--|--|--|
-| Desenvolver o visual do filtro de dias | 13/5/2024 | Carlos Intrieri | 25/5/2024
-| Desenvolver a funcionalidade de deletar um dia | 13/5/2024 | Avya Alex | 24/5/2024
-| Desenvolver a sincronização entre os dados do banco de dados e o timelapse | 13/5/2024 | João Suzuki | 22/5/2024
-| Desenvolver a exibição dos gráficos com os dados do banco de dados e o filtro de dias| 13/5/2024 | Victor Bessa/Gabriel Guimarães | 25/5/2024
-| Criar o manual de execução do projeto | 13/5/2024 | João Góes | 25/5/2024
-| Desenvolver funcionalidade para alterar o código de segurança e salvá-lo no banco de dados | 13/5/2024 | Pedro Prevides | 23/5/2024
-| Desenvolver a visual da exibição dos dados de um determinado dia | 13/5/2024 | Davi Marinho | 25/5/2024
-| Desenvolver a exibição dos dados de um determinado dia | 13/5/2024 | Davi Marinho | 25/5/2024
-| Arrumar a watermark | 13/5/2024 | João Góes | 22/5/2024
-| Desenvolver funcionalidade para criar as médias dos dados de um determinado dia| 13/5/2024 | João Felipe Rocha | 25/5/2024
-| Integrar (merge) visual do filtro com a funcionalidade do filtro | 13/5/2024 | Avya Alex | 25/5/2024
-| Integrar visual da exibição de dados de um dia com a funcionalidade de exibir os dados | 13/5/2024 | João Felipe Rocha | 25/5/2024
-| Sincronizar funcionalidade de médias do dia com o timelapse | 13/5/2024 | Carlos Intrieri | 25/5/2024
-| Atualizar o README | 13/5/2024 | Carlos Intrieri | 26/5/2024
+Sprint 4:
+
+| Descrição | Horas | Data de início | Responsável | Data de término
+|-----------|--|--|--|--|
+| Desenvolver a funcionalidade de exibir as médias dos dias no overview | 2 | 05/06/2024 | Victor Bessa | 16/06/2024
+| Desenvolver o visual dos botões de filtro do filtro | 2 | 05/06/2024 | João Góes | 16/06/2024
+| Arrumar a responsividade da tabela no mobile | 2 | 05/06/2024 | Davi Marinho | 16/06/2024
+| Arrumar a busca por meses com "0" na frente na barra de pesquisa | 2 | 05/06/2024 | Carlos Intrieri | 15/06/2024
+| Arrumar os botões de filtrar para que filtrem baseando-se nos dias da tabela em vez dos dias reais | 4 | 05/06/2024 | Gabriel Guimaraes | 16/06/2024
+| Arrumar responsividade do filtro dos gráficos | 2 | 05/06/2024 | Carlos Intrieri | 15/06/2024
+| Corrigir botão de cancelar deleção | 2 | 05/06/2024 | Davi Marinho | 09/06/2024
+| Corrigir erro em que ao deletar um dia e adicionar uma tabela de novo, este dia é adicionado no fim do timelapse | 6 | 05/06/2024 | João Felipe | 16/06/2024
+| Corrigir erro em que não é possível selecionar o primeiro e o último dia | 2 | 05/06/2024 | João Suzuki | 11/06/2024
+| Corrigir página de erro do filtro ao selecionar um dia que não existe | 2 | 05/06/2024 | Victor Bessa | 16/06/2024
+| Arrumar a rota de quando adicionar um dado | 2 | 05/06/2024 | Avya Alex | 16/06/2024
+| Arrumar a rota de quando alterar código de segurança | 2 | 05/06/2024 | Pedro Prevides | 16/06/2024
+| Arrumar problema ao fazer upload de um arquivo sem selecionar um arquivo | 2 | 05/06/2024 | Avya Alex | 16/06/2024
+| Criar manual | 2 | 05/06/2024 | João Góes | 16/06/2024
+| Atualizar readme | 2 | 05/06/2024 | Pedro Prevides | 16/06/2024
 
 <span id="backlog">
     
